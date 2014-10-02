@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var jade = require('gulp-jade');
-var markdown = require('gulp-markdown');
 var gutil = require('gulp-util');
 
 gulp.task('scripts', function() {
@@ -16,6 +15,7 @@ gulp.task('styles', function() {
     }))
     .pipe(gulp.dest('build/css'));
 });
+
 
 gulp.task('markdown', function() {
   gulp.src(['src/docs/*.md'])
@@ -41,7 +41,7 @@ gulp.task('bowercopy', function() {
 
 
 gulp.task('default', function() {
-  gulp.run('scripts', 'styles', 'content', 'markdown');
+  gulp.run('scripts', 'styles', 'content', 'bowercopy');
 
   gulp.watch('src/sass/**', function(event) {
     gulp.run('styles');
