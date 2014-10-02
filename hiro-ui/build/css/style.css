@@ -1,0 +1,101 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Fira Sans';
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white; }
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+h1 {
+  font-size: 40px;
+  font-weight: 200;
+  color: #bebebe; }
+
+h2 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #bebebe; }
+
+h3 {
+  font-weight: 300;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin: 0; }
+
+.content {
+  width: 800px;
+  margin: auto; }
+
+.fav {
+  width: 9rem;
+  height: 9rem;
+  padding: 1rem;
+  background: white;
+  margin: 0.5px;
+  float: left;
+  position: relative; }
+
+.fav-inner {
+  position: absolute;
+  bottom: 1rem;
+  width: calc(100% - 2rem);
+  color: black;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.current {
+  border: 0.25rem solid white;
+  width: 36rem;
+  height: 18rem;
+  position: relative; }
+  .current h3 {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem; }
+
+.address {
+  border: 0.25rem solid white;
+  width: 36rem;
+  height: 3rem;
+  margin-top: 1rem; }
+  .address h3 {
+    line-height: 2.5rem;
+    margin-left: 1rem; }
+
+.widget {
+  width: 18rem;
+  height: 18rem;
+  padding: 1rem;
+  background: white;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  float: left; }
+
+.widget-small {
+  width: 18rem;
+  height: 9rem;
+  padding: 1rem;
+  background: white;
+  margin-right: 1rem;
+  float: left; }
+
+.cf:before, .cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.cf:after {
+  clear: both; }

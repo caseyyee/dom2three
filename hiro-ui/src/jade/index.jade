@@ -1,0 +1,53 @@
+extends layouts/master
+
+mixin fav(title)
+	div.fav
+		div.fav-inner #{title}
+
+block content
+	.content
+		h1 HIRO UI
+
+		h2 Current site
+
+		div.current
+			h3 Hacker News
+
+		div.address
+			h3 Search or address
+
+		br
+		br
+
+		h2 Favorites
+
+		div.cf
+			+fav('Mozilla Developer')
+			+fav('Sechelt')
+			+fav('Twitter')
+			+fav('Daring Fireball')
+			+fav('Three.js documentation')
+			+fav('GLSL.HER')
+			+fav('Andrew Sullivan')
+			+fav('The Atlantic')
+			+fav('Vancouver Sun')
+			+fav('IO9')
+			+fav('Hacker News')
+			+fav('Youtube')
+			+fav('Facebook')
+			+fav('Ars Technica')
+			+fav('Reddit')
+			+fav('DuckDuckGo')
+			+fav('Oculus Share')
+
+		br
+		br
+
+		h2 Widgets
+
+		div.cf
+			div.widget-small
+				h3 San Francisco
+
+		div.widget
+		div.widget

@@ -1,0 +1,15 @@
+{
+  "name": "fira",
+  "main": "fira.css",
+  "homepage": "https://github.com/mozilla/fira",
+  "_release": "6bcf57fc7f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6bcf57fc7f50df118964f71d7c4eb02e1a4e51b3"
+  },
+  "_source": "git://github.com/mozilla/fira.git",
+  "_target": "*",
+  "_originalSource": "mozilla/fira",
+  "_direct": true
+}

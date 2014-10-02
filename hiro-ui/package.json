@@ -1,0 +1,23 @@
+{
+  "name": "gulp-static-boilerplate",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caseyyee/jade-sass-boilerplate.git"
+  },
+  "author": "Casey Yee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caseyyee/jade-sass-boilerplate.git"
+  },
+  "devDependencies": {
+    "gulp": "~3.2.4",
+    "gulp-sass": "~0.2.3",
+    "gulp-jade": "~0.3.0",
+    "gulp-util": "~2.2.6",
+    "gulp-markdown": "~1.0.0"
+  }
+}
