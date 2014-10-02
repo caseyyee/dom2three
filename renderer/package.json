@@ -1,10 +1,9 @@
 {
-  "name": "web2three",
+  "name": "dom2three",
   "version": "0.0.1",
   "description": "Render HTML onto three.js texture",
   "dependencies": {},
   "devDependencies": {
-    "spooky": "~0.2.4",
     "phantom": "~0.6.5"
   }
 }
