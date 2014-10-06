@@ -4,6 +4,6 @@
   "description": "Render HTML onto three.js texture",
   "dependencies": {},
   "devDependencies": {
-    "phantom": "~0.6.5"
+    "phantomjs": "~1.9.10"
   }
 }

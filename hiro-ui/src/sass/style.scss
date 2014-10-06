@@ -61,6 +61,12 @@ h3 {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+.fav:hover {
+	background: yellow;
+}
+.fav:active {
+	background: purple;
+}
 
 .current {
 	border: $border-med;

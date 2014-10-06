@@ -36,6 +36,9 @@ h3 {
   width: 800px;
   margin: auto; }
 
+#favorites {
+  width: 35rem; }
+
 .fav {
   width: 9rem;
   height: 9rem;
@@ -54,6 +57,12 @@ h3 {
   text-transform: uppercase;
   overflow: hidden;
   text-overflow: ellipsis; }
+
+.fav:hover {
+  background: yellow; }
+
+.fav:active {
+  background: purple; }
 
 .current {
   border: 0.25rem solid white;
