@@ -13,6 +13,8 @@ page.open("http://localhost:8000/build/index-layout.html", function(status) {
     	var props = [],
     	matches = document.querySelectorAll('[data-d23]');
 
+      document.body.style.background = 'transparent';
+      
     	var i, el;
       for(i = 0; i < matches.length; ++i) {
         el = matches[i];
