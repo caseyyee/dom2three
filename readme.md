@@ -16,7 +16,7 @@ Render any web page element into your three.js scene.
         /src - source files
         /data - settings.json for favorites.
 
-The default gulp task in `/hiro-ui` will output into `build` folder.   This is where the renderer is pointed to extract layout, texture bitmap and texture atlas for use in Hiro.
+The default gulp task in `/hiro-ui` will output into `/hiro-ui/build` folder.   This is where the renderer is pointed to extract layout, texture bitmap and texture atlas for use in Hiro.
 
 ### Rendering and using Hiro templates
 
