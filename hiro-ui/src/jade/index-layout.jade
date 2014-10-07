@@ -1,0 +1,11 @@
+extends layouts/master
+
+mixin fav(title)
+	div.fav(data-d23='true')
+		div.fav-inner #{title}
+
+block content
+	.content
+		div#favorites.cf
+			div#favorites-template.fav(data-d23='true', style='display:none')
+				div.fav-inner

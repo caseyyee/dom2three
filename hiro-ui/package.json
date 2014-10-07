@@ -14,7 +14,7 @@
     "url": "https://github.com/caseyyee/jade-sass-boilerplate.git"
   },
   "devDependencies": {
-    "gulp": "~3.2.4",
+    "gulp": "~3.2.5",
     "gulp-sass": "~0.2.3",
     "gulp-jade": "~0.3.0",
     "gulp-util": "~2.2.6"

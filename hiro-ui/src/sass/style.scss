@@ -9,7 +9,10 @@ html, body {
   font-weight: 300;
   margin: 0;
   padding: 0;
-  background: #000;
+}
+
+body {
+	background: #000;
   color: #fff;
 }
 
@@ -38,9 +41,11 @@ h3 {
 
 .content  {
 	width: 800px;
-	margin: auto;
 }
 
+#favorites {
+	width: 500px;
+}
 // components
 .fav {
 	width: 9rem;
@@ -61,6 +66,12 @@ h3 {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+.fav:hover {
+	background: yellow;
+}
+.fav:active {
+	background: purple;
+}
 
 .current {
 	border: $border-med;

@@ -5,7 +5,9 @@ html, body {
   font-size: 14px;
   font-weight: 300;
   margin: 0;
-  padding: 0;
+  padding: 0; }
+
+body {
   background: black;
   color: white; }
 
@@ -33,8 +35,10 @@ h3 {
   margin: 0; }
 
 .content {
-  width: 800px;
-  margin: auto; }
+  width: 800px; }
+
+#favorites {
+  width: 500px; }
 
 .fav {
   width: 9rem;
@@ -54,6 +58,12 @@ h3 {
   text-transform: uppercase;
   overflow: hidden;
   text-overflow: ellipsis; }
+
+.fav:hover {
+  background: yellow; }
+
+.fav:active {
+  background: purple; }
 
 .current {
   border: 0.25rem solid white;
