@@ -3,12 +3,13 @@ html, body {
   height: 100%;
   font-family: 'Fira Sans';
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
-  padding: 0; }
+  padding: 2rem;
+  text-rendering: optimizeLegibility; }
 
 body {
-  background: black;
+  background: #6674a7;
   color: white; }
 
 *, *:before, *:after {
@@ -16,26 +17,148 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-h1 {
-  font-size: 40px;
-  font-weight: 200;
-  color: #bebebe; }
-
-h2 {
-  margin: 0;
-  margin-bottom: 10px;
-  font-weight: 100;
-  text-transform: uppercase;
-  color: #bebebe; }
-
-h3 {
-  font-weight: 300;
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  margin: 0; }
+.header {
+  font-size: 4rem;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  color: white; }
 
 .content {
   width: 800px; }
+
+.break {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  margin: 6rem 0 2rem;
+  opacity: 0.4;
+  color: black; }
+  .break hr {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    margin: 0 0 0.5rem; }
+
+:focus {
+  transform-style: preserve-3d;
+  transform: scaleX(1) scaleY(1);
+  outline: 0.3rem solid rgba(255, 255, 255, 0.5); }
+
+.frame {
+  border: 0.3rem solid white;
+  width: 36rem;
+  height: 18rem;
+  position: relative;
+  font-size: 1.25rem; }
+  .frame .authors {
+    list-style-type: none;
+    padding: 1rem 0 0 1rem;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 0.025rem; }
+    .frame .authors li {
+      padding: 0;
+      margin: 0; }
+  .frame .title {
+    left: 1rem;
+    bottom: 1rem;
+    position: absolute;
+    width: calc(100% - 2rem);
+    padding: 0;
+    margin: 0; }
+    .frame .title .dash {
+      border-top: 0.3rem solid white;
+      width: 3rem;
+      padding: 0 0 1rem; }
+    .frame .title h1 {
+      font-size: 1.75rem;
+      letter-spacing: 0.1rem;
+      line-height: 2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0; }
+
+.location {
+  font-family: 'Fira Sans';
+  font-size: 1.25rem;
+  letter-spacing: 0.075rem;
+  font-weight: 400;
+  border: 0.3rem solid white;
+  width: 36rem;
+  height: 3.5rem;
+  margin-top: 1rem;
+  background: url('../images/magnifyingglass.svg') 97% 50% no-repeat;
+  background-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.075rem;
+  line-height: 1.25rem;
+  padding: 0 1rem;
+  cursor: pointer; }
+
+.location::-moz-placeholder {
+  color: white;
+  text-transform: uppercase; }
+
+.location:hover {
+  background-color: rgba(23, 150, 218, 0.3); }
+
+.location:focus {
+  background: white url('../images/arrow.svg') 97% 50% no-repeat;
+  background-size: 1.5rem;
+  color: black; }
+
+.keyboard {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 400;
+  padding: 1rem;
+  text-transform: uppercase;
+  background-color: rgba(37, 37, 37, 0.5);
+  overflow: auto; }
+
+.keyboard ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+.keyboard li {
+  background-color: rgba(37, 37, 37, 0.25);
+  padding: 0.8rem 0 0;
+  margin: 1px;
+  width: 5rem;
+  height: 4rem;
+  text-align: center;
+  float: left;
+  cursor: pointer; }
+
+.keyboard li:hover {
+  background-color: rgba(23, 150, 218, 0.3); }
+
+.keyboard li:active {
+  background-color: #1796da; }
+
+.keyboard li.shift {
+  width: 7.5rem; }
+.keyboard li.delete {
+  width: 7.5rem; }
+.keyboard li.alternate {
+  width: 10rem;
+  text-align: center;
+  letter-spacing: 0.075rem; }
+.keyboard li.space {
+  padding: 1.1rem 0 0;
+  width: 20rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.075rem;
+  text-align: center; }
+.keyboard li.enter {
+  padding: 1.1rem 0 0;
+  width: 10rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.075rem;
+  text-align: center; }
 
 #favorites {
   width: 500px; }
@@ -47,42 +170,170 @@ h3 {
   background: white;
   margin: 0.5px;
   float: left;
-  position: relative; }
+  position: relative;
+  cursor: pointer;
+  color: black; }
 
 .fav-inner {
   position: absolute;
   bottom: 1rem;
   width: calc(100% - 2rem);
-  color: black;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.0175rem;
   text-transform: uppercase;
   overflow: hidden;
   text-overflow: ellipsis; }
 
 .fav:hover {
-  background: yellow; }
+  background: rgba(23, 150, 218, 0.3); }
 
 .fav:active {
-  background: purple; }
+  color: white;
+  background: #1796da; }
 
-.current {
-  border: 0.25rem solid white;
-  width: 36rem;
-  height: 18rem;
+.doorhanger .box {
+  background-color: white;
+  padding: 3rem 6rem 3rem 3rem;
+  width: 40rem;
   position: relative; }
-  .current h3 {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem; }
 
-.address {
-  border: 0.25rem solid white;
-  width: 36rem;
-  height: 3rem;
-  margin-top: 1rem; }
-  .address h3 {
-    line-height: 2.5rem;
-    margin-left: 1rem; }
+.doorhanger .close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 4rem;
+  height: 4rem;
+  background: url('../images/x.svg') 50% 50% no-repeat;
+  background-size: 50% 50%;
+  opacity: 0.5; }
+  .doorhanger .close :hover {
+    background-color: rgba(23, 150, 218, 0.3);
+    cursor: pointer; }
+
+.doorhanger .close:hover {
+  background-color: rgba(23, 150, 218, 0.3);
+  cursor: pointer; }
+
+.doorhanger h1 {
+  color: #333333;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0; }
+
+.doorhanger p {
+  color: #5f5f5f;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  padding: 1rem 0 0;
+  margin: 0; }
+
+.doorhanger .button {
+  width: 14rem;
+  height: 4.5rem;
+  padding: 1rem;
+  letter-spacing: 0.075rem;
+  margin: 1.5rem 1rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  float: left;
+  cursor: pointer;
+  text-transform: uppercase; }
+
+.doorhanger .button.secondary {
+  border: 0.4rem solid white; }
+
+.doorhanger .button.secondary:hover {
+  background-color: rgba(23, 150, 218, 0.3); }
+
+.doorhanger .button.secondary:active {
+  border: 0.4rem solid rgba(23, 150, 218, 0.3);
+  background-color: #1796da; }
+
+.doorhanger .button.primary {
+  height: 4.5rem;
+  border: 0.4rem solid #1796da;
+  background-color: #1796da; }
+
+.call .box {
+  background-color: white;
+  padding: 3rem 6rem 3rem 3rem;
+  width: 40rem;
+  position: relative; }
+  .call .box img {
+    width: 7rem;
+    height: 7rem;
+    position: absolute;
+    left: 2em;
+    top: 2em;
+    border-radius: 50%; }
+  .call .box h2 {
+    color: #666666;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0 0 0 7.5rem;
+    margin: 0; }
+  .call .box h1 {
+    color: #333333;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0 0 0 7.5rem;
+    margin: 0; }
+  .call .box p {
+    color: #5f5f5f;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    padding: 1rem 0 0;
+    margin: 0; }
+  .call .box .close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    background: url('../images/x.svg') 50% 50% no-repeat;
+    background-size: 50% 50%;
+    opacity: 0.5; }
+
+.call .close:hover {
+  background-color: rgba(23, 150, 218, 0.3);
+  cursor: pointer; }
+
+.call .button {
+  width: 14rem;
+  height: 4.5rem;
+  padding: 1rem;
+  letter-spacing: 0.075rem;
+  margin: 1.5rem 1rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  float: left;
+  cursor: pointer;
+  text-transform: uppercase; }
+
+.call .button.secondary {
+  border: 0.4rem solid #e04540;
+  background-color: #e04540; }
+
+
+
+.call .button.primary {
+  border: 0.4rem solid #1db992;
+  background-color: #1db992; }
 
 .widget {
   width: 18rem;

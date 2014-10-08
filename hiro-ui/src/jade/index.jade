@@ -1,53 +1,166 @@
 extends layouts/master
 
 mixin fav(title)
-	div.fav
-		div.fav-inner #{title}
+	.fav
+		.fav-inner #{title}
 
 block content
 	.content
-		h1 HIRO UI
+		.header HIRO UI
 
-		h2 Current site
 
-		div.current
-			h3 Road to VR
 
-		div.address
-			h3 Search or address
 
-		br
-		br
 
-		h2 Favorites
+		cf
+		.break
+			hr
+			| Site Frame
 
-		div.cf
-			+fav('Mozilla Developer')
-			+fav('Sechelt')
-			+fav('Twitter')
-			+fav('Daring Fireball')
-			+fav('Three.js documentation')
-			+fav('GLSL.HER')
-			+fav('Andrew Sullivan')
-			+fav('The Atlantic')
-			+fav('Vancouver Sun')
-			+fav('IO9')
-			+fav('Hacker News')
-			+fav('Youtube')
-			+fav('Facebook')
-			+fav('Ars Technica')
-			+fav('Reddit')
-			+fav('DuckDuckGo')
-			+fav('Oculus Share')
+		.frame( tabindex="1" )
+			ul.authors
+				li Casey Yee
+				li Diego Marcos
+				li Vlad Vukicevic
+			.title
+				.dash
+				h1 Road to VR
 
-		br
-		br
 
-		h2 Widgets
 
-		div.cf
-			div.widget-small
+
+
+
+		cf
+		.break
+			hr
+			| Location Bar
+
+		input(input type="text" tabindex="2" placeholder="Search or Address" ).location
+
+
+
+
+
+
+		.cf
+		.break
+			hr
+			| Keyboard
+
+		.keyboard
+			ul.cf
+				li q
+				li w
+				li e
+				li r
+				li t
+				li y
+				li u
+				li i
+				li o
+				li p
+			ul.cf
+				li a
+				li s
+				li d
+				li f
+				li(tabindex="3") g
+				li h
+				li j
+				li k
+				li l
+			ul.cf
+				li.shift -
+				li z
+				li x
+				li c
+				li v
+				li b
+				li n
+				li m
+				li.delete -
+			ul.cf
+				li.alternate 123
+				li.languages -
+				li.space(tabindex="4") Space
+				li.period .
+				li.enter Enter
+
+
+
+
+
+		.cf
+		.break
+			hr
+			| Favorites
+
+		+fav('Mozilla Developer')
+		+fav('Sechelt')
+		+fav('Twitter')
+		+fav('Daring Fireball')
+		+fav('Three.js documentation')
+		+fav('GLSL.HER')
+		+fav('Andrew Sullivan')
+		+fav('The Atlantic')
+		+fav('Vancouver Sun')
+		+fav('IO9')
+		+fav('Hacker News')
+		+fav('Youtube')
+		+fav('Facebook')
+		+fav('Ars Technica')
+		+fav('Reddit')
+		+fav('DuckDuckGo')
+		+fav('Oculus Share')
+
+
+
+
+
+		.cf
+		.break
+			hr
+			| Doorhanger
+			
+		.doorhanger
+			.box
+				h1 Would you like to show notifications for localhost?
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				.close
+			.button.secondary(tabindex="5") Allow
+			.button.primary(tabindex="6") Deny
+
+
+
+
+
+		.cf
+		.break
+			hr
+			| Call
+			
+		.call
+			.box
+				img(src='images/vlad.png')
+				h2 Incoming Call
+				h1 Vlad Vukicevic
+				.close
+			.button.secondary(tabindex="7") Ignore
+			.button.primary(tabindex="8") Answer
+
+
+
+
+
+		.cf
+		.break
+			hr
+			| Widgets
+
+		.cf
+			.widget-small
 				h3 San Francisco
 
-		div.widget
-		div.widget
+		.widget
+		.widget
