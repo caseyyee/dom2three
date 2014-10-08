@@ -52,7 +52,8 @@ gulp.task('copy', function() {
 
 
 gulp.task('default', function() {
-  gulp.run('scripts', 'styles', 'content', 'font', 'copy', 'bower');
+  //gulp.run('scripts', 'styles', 'content', 'font', 'copy', 'bower');
+  gulp.run('scripts', 'styles', 'content');
 
   gulp.watch('src/sass/**/*.*', function(event) {
     gulp.run('styles');
