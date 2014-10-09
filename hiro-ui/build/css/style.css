@@ -5,7 +5,7 @@ html, body {
   font-size: 14px;
   font-weight: 400;
   margin: 0;
-  padding: 2rem;
+  padding: 0rem;
   text-rendering: optimizeLegibility; }
 
 body {
@@ -24,7 +24,8 @@ body {
   color: white; }
 
 .content {
-  width: 800px; }
+  width: 800px;
+  margin: 4rem; }
 
 .break {
   font-size: 1rem;
@@ -42,6 +43,25 @@ body {
   transform-style: preserve-3d;
   transform: scaleX(1) scaleY(1);
   outline: 0.3rem solid rgba(255, 255, 255, 0.5); }
+
+#layout {
+  width: 108rem;
+  margin: 0.5rem; }
+  #layout > div {
+    float: left;
+    margin-right: 4rem; }
+  #layout > div:last-child {
+    margin-right: 0; }
+  #layout #widgets {
+    width: 18rem; }
+  #layout #site-location {
+    position: relative;
+    top: 10rem;
+    width: 36rem; }
+  #layout #favorites {
+    position: relative;
+    top: 10rem;
+    width: calc(5 * 9rem + 5px); }
 
 .frame {
   border: 0.3rem solid white;
@@ -160,12 +180,9 @@ body {
   letter-spacing: 0.075rem;
   text-align: center; }
 
-#favorites {
-  width: 500px; }
-
 .fav {
-  width: 9rem;
-  height: 9rem;
+  width: calc(9rem - 1px);
+  height: calc(9rem - 1px);
   padding: 1rem;
   background: white;
   margin: 0.5px;
@@ -335,22 +352,75 @@ body {
   border: 0.4rem solid #1db992;
   background-color: #1db992; }
 
-.widget {
+.widget-medium {
   width: 18rem;
   height: 18rem;
-  padding: 1rem;
+  padding: 3rem;
   background: white;
   margin-top: 1rem;
-  margin-right: 1rem;
-  float: left; }
+  margin-right: 1rem; }
 
 .widget-small {
   width: 18rem;
   height: 9rem;
-  padding: 1rem;
+  padding: 2rem 3rem 2rem 3rem;
   background: white;
-  margin-right: 1rem;
-  float: left; }
+  color: black;
+  margin-right: 1rem; }
+
+.weather-location {
+  display: block;
+  font-weight: 400;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: #666666; }
+
+.weather-temp {
+  color: #333333;
+  font-weight: 500;
+  font-size: 3rem; }
+
+.weather-temp:after {
+  content: "\00b0";
+  color: #333333;
+  font-size: 3rem; }
+
+.clock-time {
+  font-size: 5rem;
+  line-height: 5rem;
+  margin-bottom: 1rem;
+  color: #333333;
+  text-align: center; }
+
+.clock-alarm {
+  position: relative;
+  color: #333333;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  width: 60%;
+  margin: auto;
+  text-align: right;
+  border-bottom: 1px solid #666666; }
+
+.clock-alarm.active {
+  color: #666666; }
+
+.clock-alarm.active:before {
+  opacity: 0.5; }
+
+.clock-alarm:before {
+  content: " ";
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: -1.5rem;
+  top: -0.1rem;
+  background: url('../images/alarm.svg') 97% 50% no-repeat;
+  background-size: 1.5rem;
+  display: block; }
+
+.clock-alarm:last-child {
+  border: none; }
 
 .cf:before, .cf:after {
   content: " ";

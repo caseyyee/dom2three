@@ -1,11 +1,19 @@
 extends layouts/master
 
 mixin fav(title)
-	div.fav(data-d23='true')
-		div.fav-inner #{title}
+	.fav(data-d23='true')
+		.fav-inner #{title}
 
-block content
-	.content
-		div#favorites.cf
-			div#favorites-template.fav(data-d23='true', style='display:none')
-				div.fav-inner
+block content	
+
+	#layout.cf
+		#widgets
+			include ./modules/widgets.jade
+			
+		#site-location
+			include ./modules/siteframe.jade
+			include ./modules/locationbar.jade
+
+		#favorites.cf.layout-favorites
+			#favorites-template.fav(data-d23='true', style='display:none')
+				.fav-inner

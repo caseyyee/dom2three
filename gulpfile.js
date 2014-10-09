@@ -9,9 +9,9 @@ var path = {
   base: './hiro-ui/'
 }
 var filesToMove = [
-	'images/**/*.*',
-	'js/**/*.js',
-	'data/**/*.*'
+	path.base+'src/images/**/*.*',
+	path.base+'src/js/**/*.js',
+	path.base+'src/data/**/*.*'
 ];
 
 // dom2three
@@ -30,7 +30,9 @@ gulp.task('styles', function() {
 });
 
 gulp.task('content', function() {
-  gulp.src([path.base+'src/jade/**/*.jade', '!'+path.base+'src/jade/layouts/**'])
+  gulp.src([path.base+'src/jade/**/*.jade', 
+    '!'+path.base+'src/jade/layouts/**',
+    '!'+path.base+'src/jade/modules/**'])
     .pipe(jade().on('error', function(err){
         gutil.log(gutil.colors.red(err))
     }))
@@ -38,7 +40,8 @@ gulp.task('content', function() {
 });
 
 gulp.task('bower', function() {
-  gulp.src(['!'+path.base+'bower_components/fira{,/**}', path.base+'bower_components/**/*.*'])
+  gulp.src(['!'+path.base+'bower_components/fira{,/**}', 
+    path.base+'bower_components/**/*.*'])
     .pipe(gulp.dest(path.base+'build/js'));
 })
 
@@ -49,7 +52,6 @@ gulp.task('font', function() {
     .pipe(gulp.dest(path.base+'build/fonts/fira'));
 })
 
-/* not working <sigh> why? */
 gulp.task('copy', function() {
   gulp.src(filesToMove, { base: path.base+'src' })
   	.pipe(gulp.dest(path.base+'build'));
@@ -76,10 +78,10 @@ gulp.task('default', function() {
   gulp.run('connect','copy', 'styles', 'content', 'font', 'bower');
 
   gulp.watch(path.base+'src/sass/**/*.*', function(event) {
-    gulp.run('styles','renderd2t');
+    gulp.run('styles');
   });
   gulp.watch(path.base+'src/jade/**/*.*', function(event) {
-    gulp.run('content','renderd2t');
+    gulp.run('content');
   });
   gulp.watch(path.base+'src/js/**/*.*', function(event) {
     gulp.run('copy');

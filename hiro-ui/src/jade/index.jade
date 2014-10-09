@@ -4,43 +4,22 @@ mixin fav(title)
 	.fav
 		.fav-inner #{title}
 
+
 block content
 	.content
 		.header HIRO UI
 
-
-
-
-
-		cf
 		.break
 			hr
 			| Site Frame
 
-		.frame( tabindex="1" )
-			ul.authors
-				li Casey Yee
-				li Diego Marcos
-				li Vlad Vukicevic
-			.title
-				.dash
-				h1 Road to VR
+		include ./modules/siteframe.jade
 
-
-
-
-
-
-		cf
 		.break
 			hr
 			| Location Bar
 
-		input(input type="text" tabindex="2" placeholder="Search or Address" ).location
-
-
-
-
+		include ./modules/locationbar.jade
 
 
 		.cf
@@ -149,18 +128,10 @@ block content
 			.button.secondary(tabindex="7") Ignore
 			.button.primary(tabindex="8") Answer
 
-
-
-
-
 		.cf
 		.break
 			hr
 			| Widgets
 
-		.cf
-			.widget-small
-				h3 San Francisco
-
-		.widget
-		.widget
+		
+		include ./modules/widgets.jade

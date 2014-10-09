@@ -1,4 +1,8 @@
-$font-med: 1.25rem;
+$font-small: 1.25rem;
+$font-med: 1.5rem;
+$font-large: 1.75rem;
+$font-mega: 2.5rem;
+
 $border-med: 0.25rem solid white;
 $hoverBlue: rgba( 23, 150, 218, 0.3rem );
 $pressBlue: rgba( 23, 150, 218, 1 );
@@ -12,7 +16,7 @@ html, body {
 	font-size: 14px;
 	font-weight: 400;
 	margin: 0;
-	padding: 2rem;
+	padding: 0rem;
 	text-rendering: optimizeLegibility;
 }
 
@@ -35,6 +39,7 @@ body {
 
 .content  {
 	width: 800px;
+	margin: 4rem;
 }
 
 .break {
@@ -61,6 +66,37 @@ body {
 	outline: 0.3rem solid rgba( 255, 255, 255, 0.5 );
 }
 
+//---------- Layout ----------//
+#layout {
+	width: 108rem;
+	margin: 0.5rem;
+	// border: 1px dotted red;
+
+	> div {
+		float: left;
+		margin-right: 4rem;
+	}
+	> div:last-child {
+		margin-right: 0;
+	}
+
+	#widgets {
+		width: 18rem;
+	}
+
+	#site-location {
+		position: relative;
+		top: 10rem;
+		width: 36rem;
+	}
+
+	#favorites {
+		position: relative;
+		top: 10rem;
+		width: calc(5 * 9rem + 5px);
+	}
+}
+
 
 
 //---------- Site Frame ----------//
@@ -70,14 +106,14 @@ body {
 	width: 36rem;
 	height: 18rem;
 	position: relative;
-	font-size: 1.25rem;
+	font-size: $font-small;
 	
 	.authors {
 		list-style-type: none;
 		padding: 1rem 0 0 1rem; 
 		margin: 0;
 		text-transform: uppercase;
-		font-size: 1.25rem;
+		font-size: $font-small;
 		letter-spacing: 0.025rem;
 
 		li {
@@ -103,7 +139,7 @@ body {
 		}
 
 		h1 {
-			font-size: 1.75rem;
+			font-size: $font-large;
 			letter-spacing: 0.1rem;
 			line-height: 2rem;
 			font-weight: 500;
@@ -123,7 +159,7 @@ body {
 
 .location {
 	font-family: 'Fira Sans';
-	font-size: 1.25rem;
+	font-size: $font-small;
 	letter-spacing: 0.075rem;
 	font-weight: 400;
 	border: 0.3rem solid white;
@@ -132,7 +168,7 @@ body {
 	margin-top: 1rem;
 	background: url('../images/magnifyingglass.svg') 97% 50% no-repeat;
 	background-size: 1.5rem;
-	font-size: 1.25rem;
+	font-size: $font-small;
 	font-weight: 400;
 	letter-spacing: 0.075rem;
 	line-height: 1.25rem;
@@ -164,7 +200,7 @@ body {
 
 .keyboard {
 	color: white;
-	font-size: 1.75rem;
+	font-size: $font-large;
 	font-weight: 400;
 	padding: 1rem;
 	text-transform: uppercase;
@@ -220,7 +256,7 @@ body {
 	li.space {
 		padding: 1.1rem 0 0;
 		width: 20rem;
-		font-size: 1.25rem;
+		font-size: $font-small;
 		letter-spacing: 0.075rem;
 		text-align: center;
 	}
@@ -231,7 +267,7 @@ body {
 	li.enter {
 		padding: 1.1rem 0 0;
 		width: 10rem;
-		font-size: 1.25rem;
+		font-size: $font-small;
 		letter-spacing: 0.075rem;
 		text-align: center;
 	}
@@ -242,14 +278,9 @@ body {
 
 
 //---------- Favorites ----------//
-
-#favorites {
-	width: 500px;
-}
-
 .fav {
-	width: 9rem;
-	height: 9rem;
+	width: calc(9rem - 1px);
+	height: calc(9rem - 1px);
 	padding: 1rem;
 	background: #fff;
 	margin: 0.5px;
@@ -263,7 +294,7 @@ body {
 	position: absolute;
 	bottom: 1rem;
 	width: calc(100% - 2rem);
-	font-size: 1.25rem;
+	font-size: $font-small;
 	font-weight: 400;
 	line-height: 1.5rem;
 	letter-spacing: 0.0175rem;
@@ -317,7 +348,7 @@ body {
 
 .doorhanger h1 {
 	color: #333;
-	font-size: 1.75rem;
+	font-size: $font-large;
 	line-height: 2.25rem;
 	font-weight: 500;
 	text-transform: uppercase;
@@ -327,7 +358,7 @@ body {
 
 .doorhanger p {
 	color: #5f5f5f;
-	font-size: 1.25rem;
+	font-size: $font-small;
 	font-weight: 400;
 	line-height: 1.75rem;
 	padding: 1rem 0 0; 
@@ -340,7 +371,7 @@ body {
 	padding: 1rem;
 	letter-spacing: 0.075rem;
 	margin: 1.5rem 1rem 0 0;
-	font-size: 1.5rem;
+	font-size: $font-med;
 	font-weight: 500;
 	text-align: center;
 	color: white;
@@ -391,7 +422,7 @@ body {
 
 	h2 {
 		color: #666;
-		font-size: 1.75rem;
+		font-size: $font-large;
 		line-height: 2.25rem;
 		font-weight: 500;
 		text-transform: uppercase;
@@ -401,7 +432,7 @@ body {
 
 	h1 {
 		color: #333;
-		font-size: 2.5rem;
+		font-size: $font-mega;
 		line-height: 3rem;
 		font-weight: 500;
 		text-transform: uppercase;
@@ -411,7 +442,7 @@ body {
 
 	p {
 		color: #5f5f5f;
-		font-size: 1.25rem;
+		font-size: $font-small;
 		font-weight: 400;
 		line-height: 1.75rem;
 		padding: 1rem 0 0; 
@@ -443,7 +474,7 @@ body {
 	padding: 1rem;
 	letter-spacing: 0.075rem;
 	margin: 1.5rem 1rem 0 0;
-	font-size: 1.5rem;
+	font-size: $font-med;
 	font-weight: 500;
 	text-align: center;
 	color: white;
@@ -474,27 +505,80 @@ body {
 
 //---------- Widgets ----------//
 
-.widget {
+.widget-medium {
 	width: 18rem;
 	height: 18rem;
-	padding: 1rem;
+	padding: 3rem;
 	background: #fff;
 	margin-top: 1rem;
 	margin-right: 1rem;
-  float: left;
 }
 .widget-small {
 	width: 18rem;
 	height: 9rem;
-	padding: 1rem;
+	padding: 2rem 3rem 2rem 3rem;
 	background: #fff;
+	color: #000;
 	margin-right: 1rem;
-  float: left;	
 }
 
+.weather-location {
+	display: block;
+	font-weight: 400;
+	font-size: $font-small;
+	text-transform: uppercase;
+	color: #666;
+}
 
+.weather-temp {
+	color: #333;
+	font-weight: 500;
+	font-size: 3rem;
+}
 
+.weather-temp:after {
+	content: "\00b0";
+	color: #333;
+	font-size: 3rem;
+}
+.clock-time {
+	font-size: $font-mega*2;
+	line-height: $font-mega*2;
+	margin-bottom: 1rem;
+	color: #333;
+	text-align: center;
+}
+.clock-alarm {
+	position: relative;
+	color: #333;
+	font-size: $font-med;
+	line-height: 3rem;
+	width: 60%;
+	margin: auto;
+	text-align: right;
+	border-bottom: 1px solid #666;
+}
+.clock-alarm.active {
+	color: #666;
+}
+.clock-alarm.active:before {
+	opacity: 0.5;
+}
 
+.clock-alarm:before {
+	content: " ";
+	width: 3rem;
+	height: 3rem;
+	position: absolute;
+	left: -1.5rem;
+	top: -0.1rem;
+	background: url('../images/alarm.svg') 97% 50% no-repeat;
+	background-size: 1.5rem;
+	display: block;
+}
+.clock-alarm:last-child {
+	border: none;
+}
 
 //---------- Utilities ----------//
 
