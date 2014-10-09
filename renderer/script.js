@@ -41,8 +41,21 @@ page.open(url, function(status) {
 
     fs.write(writePath+'/index.json',JSON.stringify(properties));
     console.log('d23 saved '+writePath+'/index.json');
-    page.render(writePath+'/index.png');
-    console.log('d23 saved '+writePath+'/index.png');
+
+    // write blue component image
+    page.evaluate(function() {
+      document.body.style.background = '#0000FF';      
+    });
+    page.render(writePath+'/index-0000ff.png');
+    console.log('d23 saved '+writePath+'/index-0000ff.png');
+
+    // write yellow component image
+    page.evaluate(function() {
+      document.body.style.background = '#ffff00';      
+    });
+    page.render(writePath+'/index-ffff00.png');
+    console.log('d23 saved '+writePath+'/index-ffff00.png');
+    
    	phantom.exit();
   }, 200);
 });

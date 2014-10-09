@@ -57,8 +57,12 @@ gulp.task('copy', function() {
   	.pipe(gulp.dest(path.base+'build'));
 })
 
-gulp.task('renderd2t',  shell.task([
+gulp.task('slimer',  shell.task([
 	'./renderer/slimerjs-0.9.3/slimerjs ./renderer/script.js '+renderFrom+' '+renderOutTo
+]));
+
+gulp.task('imagemagick', shell.task([
+  './renderer/makealpha.sh'
 ]));
 
 gulp.task('connect', function() {
@@ -69,9 +73,17 @@ gulp.task('connect', function() {
 });
 
 gulp.task('render', function() {
-  gulp.run('connect', 'renderd2t');
-  // give some time to let the renderer do its work before exiting task.
-  setTimeout(function() { process.exit(0) },3000);
+  gulp.run('connect', 'slimer');
+
+  // give some time to let slimer do its work, then run imagemagick
+  setTimeout(function() { 
+    gulp.run('imagemagick') 
+  },2000);
+
+  // give imagemagick some time before quitting.
+  setTimeout(function() { 
+    process.exit(0) 
+  },5000);
 });
 
 gulp.task('default', function() {
