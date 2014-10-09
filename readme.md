@@ -2,6 +2,13 @@
 
 Render any web page element into your three.js scene.
 
+### Dependencies
+
+* [Slimerjs](http://slimerjs.org)
+* [Imagemagick](http://www.imagemagick.org)
+* [Node.js](http://http://nodejs.org/)
+
+
 ### Directories
 
     /app - example of a webGL scene that imports dom2three elements.
