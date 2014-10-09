@@ -20,7 +20,7 @@ page.open(url, function(status) {
     	var props = [],
     	matches = document.querySelectorAll('[data-d23]');
 
-      document.body.style.background = 'transparent';
+      //document.body.style.background = 'transparent';
       
     	var i, el;
       for(i = 0; i < matches.length; ++i) {
