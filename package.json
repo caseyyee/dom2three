@@ -1,0 +1,27 @@
+{
+  "name": "Dom2three",
+  "version": "0.0.1",
+  "description": "Render HTML into your three.js scene",
+  "main": "dom2three.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/caseyyee/dom2three.git"
+  },
+  "author": "Casey Yee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caseyyee/dom2three/issues"
+  },
+  "homepage": "https://github.com/caseyyee/dom2three",
+  "devDependencies": {
+    "gulp": "~3.8.8",
+    "gulp-connect": "~2.0.6",
+    "gulp-sass": "~0.2.3",
+    "gulp-jade": "~0.3.0",
+    "gulp-util": "~2.2.6",
+    "gulp-shell": "~0.2.9"
+  }
+}

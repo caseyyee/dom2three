@@ -2,7 +2,14 @@
 var page = require('webpage').create();
 var fs = require('fs');
 
-page.open("http://localhost:8000/build/index-layout.html", function(status) {
+var url = phantom.args[0];
+var writePath = phantom.args[1];
+if (url == undefined) {
+  console.log('You need to specify a URL and destination path');
+  phantom.exit();
+}
+
+page.open(url, function(status) {
   // give a few hundred ms to let the page render.
   setTimeout(function() {
   	page.onConsoleMessage = function(msg, lineNum, sourceId) {
@@ -32,10 +39,10 @@ page.open("http://localhost:8000/build/index-layout.html", function(status) {
     	return props;
     });
 
-    fs.write('scrape/index.json',JSON.stringify(properties));
-
-    page.render('scrape/index.png');
-   
+    fs.write(writePath+'/index.json',JSON.stringify(properties));
+    console.log('d23 saved '+writePath+'/index.json');
+    page.render(writePath+'/index.png');
+    console.log('d23 saved '+writePath+'/index.png');
    	phantom.exit();
   }, 200);
 });
