@@ -8,6 +8,7 @@ var shell = require('gulp-shell')
 var path = {
   base: './hiro-ui/'
 }
+
 var filesToMove = [
 	path.base+'src/images/**/*.*',
 	path.base+'src/js/**/*.js',
@@ -18,7 +19,10 @@ var filesToMove = [
 var renderFrom = 'http://localhost:8000/index-layout.html'
 var renderOutTo = './scrape'
 
-
+gulp.task('dom2three', function() {
+  gulp.src(['dom2three.js'])
+    .pipe(gulp.dest(path.base+'build/js'));
+});
 
 
 gulp.task('styles', function() {
@@ -87,7 +91,7 @@ gulp.task('render', function() {
 });
 
 gulp.task('default', function() {
-  gulp.run('connect','copy', 'styles', 'content', 'font', 'bower');
+  gulp.run('connect','copy', 'styles', 'content', 'font', 'bower', 'dom2three');
 
   gulp.watch(path.base+'src/sass/**/*.*', function(event) {
     gulp.run('styles');

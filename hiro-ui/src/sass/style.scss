@@ -275,9 +275,10 @@ body {
 
 
 
-
-
 //---------- Favorites ----------//
+#favorites-template {
+	display: none;
+}
 .fav {
 	width: calc(9rem - 1px);
 	height: calc(9rem - 1px);

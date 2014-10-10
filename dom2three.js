@@ -1,87 +1,103 @@
-function Dom2three(opts, onReady) {
+'use strict';
+
+function DOM2three(uiData, searchRoot) {
+	var self = this;
+	self.page = null;
+	self.dataPath = null;
+	self.data = null;
+	self.root = null;
+	self.onload = null;
+
+	self.getJson('./data/ui.json').then( function(response) {
+		return JSON.parse(response)
+	}).then( function(response) {
+		self.data = response;
+		self.findRoot(response, searchRoot); 
+		
+		if (typeof self.onload == 'function') {
+			self.onload.call(self);
+		}
+	});
+}
+
+DOM2three.prototype.getRectangle = function(el) {
+	var rect = el.getBoundingClientRect();
+	rect.x += window.scrollX;
+	rect.y += window.scrollY;
+	return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+}
+
+DOM2three.prototype.applyContent = function(items, dom) {
 	var self = this;
 
-	this.opts = opts;
-	this.opts.scale = 0.05;
-	this.data = null;
-	this.image = null;
+	items.forEach(function(item) {
+		var select = dom.querySelector(item.selector);
+		var el;
 
-	function init() {
-		var dataP = makeRequest(opts.dataUrl);
-		var imageP = getImage(opts.imageUrl);
+		// clone element
+		if (item.clone) {
+			el = select.cloneNode(true);
+			el.id = '';	// clear ID so that we don't collide with cloned element.
+			select.parentNode.appendChild(el);
+		} else {
+			el = select;
+		}
 
-		Promise.all([dataP, imageP]).then( function(values) {
-			self.data = JSON.parse(values[0]);
-			self.image = values[1];
-			if (typeof(onReady) == 'function') {
-				onReady();
-			}
-		});
-	}
+		// project content into element.
+		if (item.content) {
+			item.content.forEach(function(content) {
+				if (content.selector) {
+					var cel = el.querySelector(content.selector)
+					if (cel) {
+						cel.innerHTML = content.content;
+					} else {
+						console.error(content.selector + " not found");
+					}
 
-	function getImage(url) {
-		return new Promise(function(resolve, reject) {
-			var img = new Image();
-			img.onload = function() {
-				resolve(img);
-			};
-			img.onerror = function() {
-				reject(new Error('image did not load.'));
-			};
-			img.src = url;
-		});
-	}
+					content.rectangle = self.getRectangle(cel);		
+				}
+			});
+		}
+		
+		// get bounding rect for element.
+		item.rectangle = self.getRectangle(el);
+	});
 
-	function makeRequest(url) {
-		return new Promise(function(resolve, reject) {
-			var xhr = new XMLHttpRequest();
-			
-			xhr.onload = function() {
-				resolve(xhr.response);
-			}
-			xhr.onerror = function() {
-				reject(new Error('Some kind of network error, XHR failed.'))
-			}
-			xhr.open('GET', url);
-			xhr.send();
-		});
-	}
-	
-	init();
+	return items;
 }
 
-Dom2three.prototype.create = function(id) {
-	function findById(id, data) {
-		for (var i = 0; i < data.length; i++) {
-			if (data[i].id == id) 
-				return data[i];
+DOM2three.prototype.findRoot = function(object, searchRoot) {
+	for (var property in object) {
+		if (typeof object[property] == 'object') {
+	
+			if (object[property].hasOwnProperty('page') 
+				&& object[property].hasOwnProperty('datapath')) {
+			
+			 	if (property == searchRoot || !searchRoot) {
+			 		this.root = object[property];
+			 		
+			 		return false;
+			 	} 
+			}
+			this.findRoot(object[property], searchRoot);
 		}
 	}
+	return false;
+};
 
-	var match = findById(id, this.data);
-	
-	if (!match) {
-		console.log('no match found for id "' + id + '"');
-		return false;
-	}
-	console.log(match);
-	var canvas = document.createElement('canvas');
-  var context = canvas.getContext('2d');
-  canvas.width = match.width;
-  canvas.height = match.height;
-  context.drawImage(this.image, match.x * -1, match.y * -1);
-  
-	var texture = new THREE.Texture(canvas);
-	texture.needsUpdate = true;
-	 
-	var material = new THREE.MeshBasicMaterial({
-		map: texture,
-		transparent: true
+DOM2three.prototype.getJson = function(url) {
+	return new Promise( function(resolve, reject) {
+		var xhr = new XMLHttpRequest();
+
+		xhr.onload = function() {
+			resolve(xhr.response);
+		}
+		
+		xhr.onerror = function() {
+			reject(new Error('Some kind of network error, XHR failed.'))
+		}
+
+		xhr.open('GET', url);
+		xhr.send();
 	});
-	 
-	var mesh = new THREE.Mesh(new THREE.PlaneGeometry(canvas.width * this.opts.scale, canvas.height * this.opts.scale), material);
-	// mesh.overdraw = true;
-	// mesh.doubleSided = true;
-	
-	return mesh;
-}
+};

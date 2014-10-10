@@ -16,30 +16,11 @@ page.open(url, function(status) {
       console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
     };
 
-    var properties = page.evaluate(function() {
-    	var props = [],
-    	matches = document.querySelectorAll('[data-d23]');
-
-      //document.body.style.background = 'transparent';
-      
-    	var i, el;
-      for(i = 0; i < matches.length; ++i) {
-        el = matches[i];
-        if (el.style.display!== 'none') {
-          props.push({
-            x: el.offsetLeft,
-            y: el.offsetTop,
-            width: el.offsetWidth,
-            height: el.offsetHeight,
-            id: el.getAttribute('data-d23-id')
-          });
-        }
-      };
-
-    	return props;
+    var uidata = page.evaluate(function() {
+    	return document.querySelector('#uidata').innerHTML;
     });
 
-    fs.write(writePath+'/index.json',JSON.stringify(properties));
+    fs.write(writePath+'/index.json', uidata);
     console.log('d23 saved '+writePath+'/index.json');
 
     // write blue component image

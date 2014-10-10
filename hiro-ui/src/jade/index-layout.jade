@@ -1,7 +1,7 @@
 extends layouts/master
 
 mixin fav(title)
-	.fav(data-d23='true')
+	.fav
 		.fav-inner #{title}
 
 block content	
@@ -15,5 +15,5 @@ block content
 			include ./modules/locationbar.jade
 
 		#favorites.cf.layout-favorites
-			#favorites-template.fav(data-d23='true', style='display:none')
-				.fav-inner
+			#favorites-template.fav
+				.fav-inner Favorites name
