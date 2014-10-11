@@ -8,12 +8,11 @@ function DOM2three(uiData, searchRoot) {
 	self.root = null;
 	self.onload = null;
 
-	self.getJson('./data/ui.json').then( function(response) {
+	self.getJson(uiData).then( function(response) {
 		return JSON.parse(response)
 	}).then( function(response) {
 		self.data = response;
-		self.findRoot(response, searchRoot); 
-		
+		self.findRoot(response, searchRoot);
 		if (typeof self.onload == 'function') {
 			self.onload.call(self);
 		}
@@ -22,9 +21,13 @@ function DOM2three(uiData, searchRoot) {
 
 DOM2three.prototype.getRectangle = function(el) {
 	var rect = el.getBoundingClientRect();
-	rect.x += window.scrollX;
-	rect.y += window.scrollY;
-	return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+	console.log(el, rect);
+	return {
+		x: rect.x,
+		y: rect.y,
+		width: el.offsetWidth,
+		height: el.offsetHeight
+	};
 }
 
 DOM2three.prototype.applyContent = function(items, dom) {
@@ -32,6 +35,7 @@ DOM2three.prototype.applyContent = function(items, dom) {
 
 	items.forEach(function(item) {
 		var select = dom.querySelector(item.selector);
+
 		var el;
 
 		// clone element
@@ -53,14 +57,15 @@ DOM2three.prototype.applyContent = function(items, dom) {
 					} else {
 						console.error(content.selector + " not found");
 					}
-
-					content.rectangle = self.getRectangle(cel);		
+					content.rectangle = self.getRectangle(cel);
 				}
 			});
-		}
-		
+		};
+
 		// get bounding rect for element.
 		item.rectangle = self.getRectangle(el);
+
+
 	});
 
 	return items;
@@ -69,15 +74,15 @@ DOM2three.prototype.applyContent = function(items, dom) {
 DOM2three.prototype.findRoot = function(object, searchRoot) {
 	for (var property in object) {
 		if (typeof object[property] == 'object') {
-	
-			if (object[property].hasOwnProperty('page') 
+
+			if (object[property].hasOwnProperty('page')
 				&& object[property].hasOwnProperty('datapath')) {
-			
+
 			 	if (property == searchRoot || !searchRoot) {
 			 		this.root = object[property];
-			 		
+
 			 		return false;
-			 	} 
+			 	}
 			}
 			this.findRoot(object[property], searchRoot);
 		}
@@ -92,7 +97,7 @@ DOM2three.prototype.getJson = function(url) {
 		xhr.onload = function() {
 			resolve(xhr.response);
 		}
-		
+
 		xhr.onerror = function() {
 			reject(new Error('Some kind of network error, XHR failed.'))
 		}

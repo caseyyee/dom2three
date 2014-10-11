@@ -25,18 +25,18 @@ page.open(url, function(status) {
 
     // write blue component image
     page.evaluate(function() {
-      document.body.style.background = '#0000FF';      
+      document.body.style.background = '#0000FF';
     });
     page.render(writePath+'/index-0000ff.png');
     console.log('d23 saved '+writePath+'/index-0000ff.png');
 
     // write yellow component image
     page.evaluate(function() {
-      document.body.style.background = '#ffff00';      
+      document.body.style.background = '#ffff00';
     });
     page.render(writePath+'/index-ffff00.png');
     console.log('d23 saved '+writePath+'/index-ffff00.png');
-    
+
    	phantom.exit();
   }, 200);
 });
