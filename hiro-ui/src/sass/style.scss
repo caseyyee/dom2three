@@ -107,17 +107,18 @@ body {
 	height: 18rem;
 	position: relative;
 	font-size: $font-small;
-	
+
 	.authors {
 		list-style-type: none;
-		padding: 1rem 0 0 1rem; 
-		margin: 0;
+		//padding: 1rem 0 0 1rem;
+		margin: 1rem 0 0 1rem;
+		padding: 0;
 		text-transform: uppercase;
 		font-size: $font-small;
 		letter-spacing: 0.025rem;
 
 		li {
-			padding: 0; 
+			padding: 0;
 			margin: 0;
 		}
 
@@ -362,7 +363,7 @@ body {
 	font-size: $font-small;
 	font-weight: 400;
 	line-height: 1.75rem;
-	padding: 1rem 0 0; 
+	padding: 1rem 0 0;
 	margin: 0;
 }
 
@@ -446,7 +447,7 @@ body {
 		font-size: $font-small;
 		font-weight: 400;
 		line-height: 1.75rem;
-		padding: 1rem 0 0; 
+		padding: 1rem 0 0;
 		margin: 0;
 	}
 

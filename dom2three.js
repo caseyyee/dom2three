@@ -21,7 +21,6 @@ function DOM2three(uiData, searchRoot) {
 
 DOM2three.prototype.getRectangle = function(el) {
 	var rect = el.getBoundingClientRect();
-	console.log(el, rect);
 	return {
 		x: rect.x,
 		y: rect.y,
@@ -53,7 +52,12 @@ DOM2three.prototype.applyContent = function(items, dom) {
 				if (content.selector) {
 					var cel = el.querySelector(content.selector)
 					if (cel) {
-						cel.innerHTML = content.content;
+						// if this content is to be replaced with canvas text, clear out contents of element.
+						if (content.canvas) {
+							cel.innerHTML = '&nbsp;';
+						} else {
+							cel.innerHTML = content.content;
+						}
 					} else {
 						console.error(content.selector + " not found");
 					}
