@@ -17,10 +17,12 @@
 					"display": true,
 					"content": [{
 							"selector": ".authors",
-							"content": "Your Name"
+							"content": "Your Name",
+							"live": true
 						},{
 							"selector": ".title h1",
-							"content": "Site title"
+							"content": "Site title",
+							"live": true
 						}]
 				},
 
@@ -50,9 +52,9 @@
 						"content": "Information Dive"
 					}],
 					"userData": {
-						"url": "./content/sechelt/index.html",
-						"author": "Eric, Josh Carpenter",
-						"tech": "WebGL"
+						"url": "./cubes/index.html",
+						"author": "Mr. Doob",
+						"tech": "three.js"
 					}
 				},
 				{
