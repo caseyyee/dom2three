@@ -27,15 +27,6 @@ Running the  `./gulp` default task will process all the files in `/hiro-ui/src` 
 
 
 ### Rendering and using Hiro templates
-To rener the templates, run `./gulp render`.  The renderers output will saved to `./scrape` folder.  Copy this into the `{JAVRIS folder}/data/ui`.
+To rener the templates, run `./gulp render`.  The renderers output will saved to `./scrape` folder.  Copy this into the `{JAVRIS folder}/data/`.
 
-### Gulp configuration
-Inside `gulpfile.js` you can change the source directory where templates are ready from:
 
-    var path = {
-        base: './hiro-ui/'
-    }
-
-Configure the renderer source file by changing variable:
-    
-    var renderFrom = 'http://localhost:8000/index-layout.html'
