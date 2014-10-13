@@ -44,24 +44,53 @@ body {
   transform: scaleX(1) scaleY(1);
   outline: 0.3rem solid rgba(255, 255, 255, 0.5); }
 
-#layout {
+#title {
+  width: 36rem; }
+
+#hud {
   width: 108rem;
   margin: 0.5rem; }
-  #layout > div {
+  #hud > div {
     float: left;
     margin-right: 4rem; }
-  #layout > div:last-child {
+  #hud > div:last-child {
     margin-right: 0; }
-  #layout #widgets {
+  #hud #widgets {
     width: 18rem; }
-  #layout #site-location {
+  #hud #site-location {
     position: relative;
     top: 10rem;
     width: 36rem; }
-  #layout #favorites {
+  #hud #favorites {
     position: relative;
     top: 10rem;
     width: calc(5 * 9rem + 5px); }
+
+.comp-links {
+  margin: 0;
+  padding: 0; }
+
+.comp-link {
+  float: left;
+  list-style: none; }
+
+.comp-link a {
+  text-decoration: none; }
+
+.button {
+  width: 14rem;
+  height: 4.5rem;
+  padding: 1rem;
+  letter-spacing: 0.075rem;
+  margin: 1.5rem 1rem 0 0;
+  border: 0.4rem solid white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  float: left;
+  cursor: pointer;
+  text-transform: uppercase; }
 
 .frame {
   border: 0.3rem solid white;

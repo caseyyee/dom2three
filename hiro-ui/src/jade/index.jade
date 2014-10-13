@@ -4,10 +4,21 @@ mixin fav(title)
 	.fav
 		.fav-inner #{title}
 
+mixin comp-link(title, link)
+	li.comp-link
+		a.button(href='#{link}') #{title}
 
 block content
 	.content
 		.header HIRO UI
+
+		.break
+			hr
+			| Compositions
+
+		ul.comp-links.cf
+			+comp-link('HUD', 'index-hud.html')
+			+comp-link('Title', 'index-title.html')
 
 		.break
 			hr
@@ -101,7 +112,7 @@ block content
 		.break
 			hr
 			| Doorhanger
-			
+
 		.doorhanger
 			.box
 				h1 Would you like to show notifications for localhost?
@@ -118,7 +129,7 @@ block content
 		.break
 			hr
 			| Call
-			
+
 		.call
 			.box
 				img(src='images/vlad.png')
@@ -133,5 +144,5 @@ block content
 			hr
 			| Widgets
 
-		
+
 		include ./modules/widgets.jade

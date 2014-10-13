@@ -1,11 +1,11 @@
 (function() {
 	var uidata = document.querySelector('#uidata');
 
-	var d23 = new DOM2three('./data/ui.json','hud');
-	d23.onload = function() {
+	var d23 = new DOM2three('./data/hud/index.json');
+	d23.onload = function(items) {
 		// apply content to HTML layout.
-		this.root.items = this.applyContent(this.root.items, document.body);
+		this.applyContent(document.body);
 		// insert resultant JSON data onto page for the renderer to pick up.
 		uidata.innerHTML = JSON.stringify(this.data);
 	}
-})();	
+})();

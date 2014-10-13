@@ -4,9 +4,14 @@ mixin fav(title)
 	.fav
 		.fav-inner #{title}
 
+block scripts
+	script(type="text/javascript", src="js/lib/three.min.js")
+	script(type="text/javascript", src="js/dom2three.js")
+	script(type="text/javascript", src="js/hud.js")
+
 block content
 
-	#layout.cf
+	#hud.cf
 		#widgets
 			include ./modules/widgets.jade
 
@@ -17,3 +22,4 @@ block content
 		#favorites.cf.layout-favorites
 			#favorites-template.fav
 				.fav-inner Favorites name
+

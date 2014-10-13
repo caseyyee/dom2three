@@ -4,6 +4,7 @@ var sass = require('gulp-sass');
 var jade = require('gulp-jade');
 var gutil = require('gulp-util');
 var shell = require('gulp-shell')
+var runSequence = require('run-sequence');
 
 var path = {
   base: './hiro-ui/'
@@ -16,8 +17,17 @@ var filesToMove = [
 ];
 
 // dom2three
-var renderFrom = 'http://localhost:8000/index-layout.html'
-var renderOutTo = './scrape'
+var slimer = './renderer/slimerjs-0.9.3/slimerjs renderer/script.js ';
+var imagemagick = './renderer/makealpha.sh ';
+
+var scrapes = [
+  slimer+'http://localhost:8000/index-hud.html scrape/hud',
+  slimer+'http://localhost:8000/index-title.html scrape/title'
+];
+var alpha = [
+  imagemagick+'scrape/hud/index-ffff00.png scrape/hud/index-0000ff.png scrape/hud/index.png',
+  imagemagick+'scrape/title/index-ffff00.png scrape/title/index-0000ff.png scrape/title/index.png'
+];
 
 gulp.task('dom2three', function() {
   gulp.src(['dom2three.js'])
@@ -34,7 +44,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('content', function() {
-  gulp.src([path.base+'src/jade/**/*.jade', 
+  gulp.src([path.base+'src/jade/**/*.jade',
     '!'+path.base+'src/jade/layouts/**',
     '!'+path.base+'src/jade/modules/**'])
     .pipe(jade().on('error', function(err){
@@ -44,7 +54,7 @@ gulp.task('content', function() {
 });
 
 gulp.task('bower', function() {
-  gulp.src(['!'+path.base+'bower_components/fira{,/**}', 
+  gulp.src(['!'+path.base+'bower_components/fira{,/**}',
     path.base+'bower_components/**/*.*'])
     .pipe(gulp.dest(path.base+'build/js'));
 })
@@ -61,13 +71,12 @@ gulp.task('copy', function() {
   	.pipe(gulp.dest(path.base+'build'));
 })
 
-gulp.task('slimer',  shell.task([
-	'./renderer/slimerjs-0.9.3/slimerjs ./renderer/script.js '+renderFrom+' '+renderOutTo
-]));
 
-gulp.task('imagemagick', shell.task([
-  './renderer/makealpha.sh'
-]));
+
+gulp.task('slimer', shell.task(scrapes));
+
+gulp.task('makealpha', shell.task(alpha));
+
 
 gulp.task('connect', function() {
   connect.server({
@@ -77,17 +86,9 @@ gulp.task('connect', function() {
 });
 
 gulp.task('render', function() {
-  gulp.run('connect', 'slimer');
-
-  // give some time to let slimer do its work, then run imagemagick
-  setTimeout(function() { 
-    gulp.run('imagemagick') 
-  },2000);
-
-  // give imagemagick some time before quitting.
-  setTimeout(function() { 
-    process.exit(0) 
-  },5000);
+  runSequence('connect', 'slimer', 'makealpha', function() {
+    process.exit(0)
+  });
 });
 
 gulp.task('default', function() {
