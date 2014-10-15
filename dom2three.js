@@ -1,6 +1,6 @@
 'use strict';
 
-function DOM2three(uiJson) {
+function DOM2three(uiJson, opts) {
 	var self = this;
 	self.path = null;
 	self.data = null;
@@ -9,9 +9,15 @@ function DOM2three(uiJson) {
 	self.mesh = null;
 	self.item = null;
 
+	// options
+	self.opts = opts || {};
+	self.centerLayoutTo = self.opts.centerLayoutTo || null;
+
 	self.loadJson(uiJson)
 		.then( function(response) {
 				return JSON.parse(response)
+			}, function(err) {
+				console.error('Error parsing JSON ', err);
 			})
 		.then( function(response) {
 			self.data = response;
@@ -38,7 +44,7 @@ bits for three.js layouts
 DOM2three.prototype.loadTexture = function(src) {
 	var self = this;
 	return new Promise(function(resolve, reject) {
-		var texture = THREE.ImageUtils.loadTexture(self.path+src, undefined, function() {
+		var texture = THREE.ImageUtils.loadTexture(self.path + src, undefined, function() {
 			self.texture = texture;
 			resolve(texture);
 		});
@@ -48,8 +54,6 @@ DOM2three.prototype.loadTexture = function(src) {
 DOM2three.prototype.setText = function(selector, text) {
 	var select = this.getNode(selector);
 
-	console.log('setting text for: ',select);
-
 	if (!select) {
 		console.warn('Nothing found for ',select);
 		return false;
@@ -57,7 +61,6 @@ DOM2three.prototype.setText = function(selector, text) {
 
 	var context = select.canvasMaterial.context;
 
-	console.log('clearing canvas');
 	context.clearRect(0,
 		0,
 		select.canvasMaterial.canvas.width,
@@ -94,7 +97,7 @@ DOM2three.prototype.makeMesh = function(item) {
 	var self = this;
 
 	// geometry
-	var geometry = new THREE.PlaneGeometry( 1, 1 );
+	var geometry = new THREE.PlaneBufferGeometry( 1, 1 );
 
 	// texture positioning
 	var rect = item.rectangle;
@@ -107,8 +110,18 @@ DOM2three.prototype.makeMesh = function(item) {
 	item.texture = tex;
 
 	// positioning
-	var centerOffsetX = tex.image.width / 2;
+	var	centerOffsetX;
+
+	var centerItem = self.opts.centerLayoutTo;
+	if (centerItem) {
+		var node = self.getNode(centerItem);
+		centerOffsetX = node.rectangle.x + (node.rectangle.width / 2);
+	} else {
+		centerOffsetX = tex.image.height / 2;
+	}
+
 	var centerOffsetY = tex.image.height / 2;
+
 	var x = rect.x + (rect.width / 2) - centerOffsetX;
 	var y = rect.y + (rect.height / 2) - centerOffsetY;
 	item.position = {
@@ -118,6 +131,7 @@ DOM2three.prototype.makeMesh = function(item) {
 
 	// materials
 	// map the base texture to object.
+	//var materials = [new THREE.MeshBasicMaterial({ map : tex, depthWrite: false, depthTest: false })];
 	var materials = [new THREE.MeshBasicMaterial({ map : tex })];
 
 	// create additional materials for each replaceable piece of content.
@@ -137,6 +151,7 @@ DOM2three.prototype.makeMesh = function(item) {
 	mesh.position.set( x, -y, 0);
 	mesh.scale.set( rect.width, rect.height, 1 );
 	mesh.userData.position = new THREE.Vector2( x, y );
+	mesh.userData.scale = new THREE.Vector2( rect.width, rect.height );
 	mesh.userData.item = item;
 
 	item.mesh = mesh;
@@ -178,7 +193,7 @@ DOM2three.prototype.createCanvasMaterials = function(item) {
 			var texture = new THREE.Texture(canvas);
 			texture.needsUpdate = true;
 
-			var material = new THREE.MeshBasicMaterial( { map: texture, side:THREE.DoubleSide } );
+			var material = new THREE.MeshBasicMaterial( { map: texture, side:THREE.FrontSide } );
 			material.transparent = true;
 
 			content.canvasMaterial.texture = texture;
