@@ -1,7 +1,7 @@
 (function() {
 	var uidata = document.querySelector('#uidata');
 
-	var d23 = new DOM2three('./data/hud/index.json');
+	var d23 = new DOM2three('./data/hud.json');
 	d23.onload = function(items) {
 		// apply content to HTML layout.
 		this.applyContent(document.body);
