@@ -13,7 +13,8 @@ var path = {
 var filesToMove = [
 	path.base+'src/images/**/*.*',
 	path.base+'src/js/**/*.js',
-	path.base+'src/data/**/*.*'
+	path.base+'src/data/**/*.*',
+  path.base+'src/fonts/**/*.*'
 ];
 
 // dom2three
