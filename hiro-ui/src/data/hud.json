@@ -2,42 +2,20 @@
 	"texture": "index.png",
 	"items": [
 	  {
-	    "selector": "#widgets",
-	    "display": true,
-	    "content": [
-	      {
-	        "selector": ".clock-time",
-	        "content": "12:00",
-	        "font": "normal 400 70px Montserrat",
-	        "fillStyle": "rgb(0, 0, 0)",
-	        "canvas": true
-	      }
-	    ]
-	  },
-	  {
 	    "selector": "#site-location",
 	    "content": [
 	      {
 	        "selector": ".authors",
-	        "content": "Your Name",
-	        "font": "normal 400 17.5px Montserrat",
-	        "fillStyle": "rgb(255, 255, 255)",
-	        "canvas": true
+	        "content": "Someone Great"
 	      },
 	      {
 	        "selector": ".title h1",
-	        "content": "Site title",
-	        "font": "normal 700 24.5px Montserrat",
-	        "fillStyle": "rgb(255, 255, 255)",
-	        "canvas": true
+	        "content": "Fantastic Example"
 	      }
 	    ]
 	  },
 	  {
-	    "selector": "#favorites"
-	  },
-	  {
-	    "selector": "#favorites-template",
+	    "selector": "#favorites-left-template",
 	    "clone": true,
 	    "display": true,
 	    "content": [
@@ -54,24 +32,24 @@
 	    }
 	  },
 	  {
-	    "selector": "#favorites-template",
+	    "selector": "#favorites-left-template",
 	    "clone": true,
 	    "display": true,
 	    "content": [
 	      {
 	        "selector": ".fav-inner",
-	        "content": "Polar Sea trailer"
+	        "content": "Polar Sea"
 	      }
 	    ],
 	    "userData": {
 	      "title": "POLAR SEA TRAILER",
-	      "url": "./content/eleVR-Web-Player/elevr-player.html",
+	      "url": "http://mozvr.github.io/polarsea/index.html",
 	      "author": "DEEP INC",
 	      "tech": "WEBGL"
 	    }
 	  },
 	  {
-	    "selector": "#favorites-template",
+	    "selector": "#favorites-left-template",
 	    "clone": true,
 	    "display": true,
 	    "content": [
@@ -88,7 +66,7 @@
 	    }
 	  },
 	  {
-	    "selector": "#favorites-template",
+	    "selector": "#favorites-right-template",
 	    "clone": true,
 	    "display": true,
 	    "content": [
@@ -105,7 +83,7 @@
 	    }
 	  },
 	  {
-	    "selector": "#favorites-template",
+	    "selector": "#favorites-right-template",
 	    "clone": true,
 	    "display": true,
 	    "content": [
@@ -122,7 +100,7 @@
 	    }
 	  },
 	  {
-	    "selector": "#favorites-template",
+	    "selector": "#favorites-right-template",
 	    "clone": true,
 	    "display": true,
 	    "content": [
@@ -133,23 +111,6 @@
 	    ],
 	    "userData": {
 	      "title": "VIZICITIES",
-	      "url": "./content/sechelt/index.html",
-	      "author": "SOMEONE GREAT",
-	      "tech": "WebGL"
-	    }
-	  },
-	  {
-	    "selector": "#favorites-template",
-	    "clone": true,
-	    "display": true,
-	    "content": [
-	      {
-	        "selector": ".fav-inner",
-	        "content": "Panorama viewer"
-	      }
-	    ],
-	    "userData": {
-	      "title": "PANORAMA VIEWER",
 	      "url": "./content/sechelt/index.html",
 	      "author": "SOMEONE GREAT",
 	      "tech": "WebGL"

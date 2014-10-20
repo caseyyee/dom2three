@@ -1,9 +1,5 @@
 extends layouts/master
 
-mixin fav(title)
-	.fav
-		.fav-inner #{title}
-
 block scripts
 	script(type="text/javascript", src="js/lib/three.min.js")
 	script(type="text/javascript", src="js/dom2three.js")
@@ -12,14 +8,14 @@ block scripts
 block content
 
 	#hud.cf
-		#widgets
-			include ./modules/widgets.jade
+		.favorites.cf
+			#favorites-left-template.fav
+				.fav-inner Favorites name
 
 		#site-location
-			include ./modules/siteframe.jade
-			include ./modules/locationbar.jade
+			include ./modules/currentsite.jade
 
-		#favorites.cf.layout-favorites
-			#favorites-template.fav
+		.favorites.cf
+			#favorites-right-template.fav
 				.fav-inner Favorites name
 

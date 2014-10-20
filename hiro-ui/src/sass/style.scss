@@ -65,37 +65,33 @@ body {
 }
 
 //---------- Layout ----------//
+// title screen
 #title {
-	width: 36rem;
+	width: 30rem;
 }
-
+// hud
 #hud {
-	width: 108rem;
+	width: 75rem;
 	margin: 0.5rem;
-	// border: 1px dotted red;
 
 	> div {
 		float: left;
-		margin-right: 4rem;
-	}
-	> div:last-child {
-		margin-right: 0;
-	}
-
-	#widgets {
-		width: 18rem;
 	}
 
 	#site-location {
 		position: relative;
-		top: 10rem;
-		width: 36rem;
+		margin: 0 -5rem 0 -5rem;
 	}
 
-	#favorites {
+
+	#favorites-left-template, #favorites-right-template {
+		display: none;
+	}
+
+	.favorites {
+		width: calc(3 * 9rem + .4rem);
 		position: relative;
-		top: 10rem;
-		width: calc(5 * 9rem + 5px);
+		top: 5rem;
 	}
 }
 
@@ -128,6 +124,53 @@ body {
 	text-transform: uppercase;
 }
 
+//---------- Current Site ----------//
+.current {
+	width: 30rem;
+	text-align: center;
+
+  h1 {
+  	text-transform: uppercase;
+  	font-size: 1.25rem;
+  	letter-spacing: 0.1rem;
+  	font-weight: 400;
+  }
+
+	.globe {
+		display: inline-block;
+		width: 10rem;
+		height: 10rem;
+		border-radius: 50%;
+		border: 0.3rem solid white;
+		position: relative;
+		margin: 2rem;
+	}
+	.globe:before, .globe:after {
+		content:  " ";
+		border-radius: 50%;
+		border: 0.1rem solid rgba(255,255,255,0.5);
+		position: absolute;
+	}
+	.globe:before {
+		width: 12rem;
+		height: 12rem;
+		top: -1.3rem;
+		left: -1.3rem;
+	}
+	.globe:after {
+		width: 14rem;
+		height: 14rem;
+		top: -2.3rem;
+		left: -2.3rem;
+	}
+
+	.authors {
+		font-size: $font-small;
+		text-transform: uppercase;
+		margin: 1rem 0 0 0;
+	}
+}
+
 //---------- Site Frame ----------//
 
 .frame {
@@ -154,7 +197,6 @@ body {
 	}
 
 	.title {
-
 		left: 1rem;
 		bottom: 1rem;
 		position: absolute;
@@ -305,25 +347,23 @@ body {
 
 
 //---------- Favorites ----------//
-#favorites-template {
-	display: none;
-}
 .fav {
 	width: calc(9rem - 1px);
 	height: calc(9rem - 1px);
 	padding: 1rem;
 	background: #fff;
-	margin: 0.5px;
+	margin: 0.1rem;
+	border-radius: 0.5rem;
 	float: left;
 	position: relative;
 	cursor: pointer;
 	color: #000;
+	display: table;
+	overflow: hidden;
+	table-layout: fixed;
 }
 
 .fav-inner {
-	position: absolute;
-	bottom: 1rem;
-	width: calc(100% - 2rem);
 	font-size: $font-small;
 	font-weight: 400;
 	line-height: 1.5rem;
@@ -331,6 +371,9 @@ body {
 	text-transform: uppercase;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align: center;
+	display: table-cell;
+  vertical-align: middle;
 }
 
 .fav:hover {

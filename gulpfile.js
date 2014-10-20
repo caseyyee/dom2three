@@ -11,9 +11,9 @@ var path = {
 }
 
 var filesToMove = [
-	path.base+'src/images/**/*.*',
-	path.base+'src/js/**/*.js',
-	path.base+'src/data/**/*.*',
+  path.base+'src/images/**/*.*',
+  path.base+'src/js/**/*.js',
+  path.base+'src/data/**/*.*',
   path.base+'src/fonts/**/*.*'
 ];
 
@@ -69,7 +69,7 @@ gulp.task('font', function() {
 
 gulp.task('copy', function() {
   gulp.src(filesToMove, { base: path.base+'src' })
-  	.pipe(gulp.dest(path.base+'build'));
+    .pipe(gulp.dest(path.base+'build'));
 })
 
 
@@ -81,8 +81,8 @@ gulp.task('makealpha', shell.task(alpha));
 
 gulp.task('connect', function() {
   connect.server({
-  	root: path.base+'build/',
-  	port: 8000
+    root: path.base+'build/',
+    port: 8000
   });
 });
 
@@ -103,5 +103,8 @@ gulp.task('default', function() {
   });
   gulp.watch(path.base+'src/js/**/*.*', function(event) {
     gulp.run('copy');
+  });
+  gulp.watch('dom2three.js', function(event) {
+    gulp.run('dom2three');
   });
 });

@@ -45,26 +45,22 @@ body {
   outline: 0.3rem solid rgba(255, 255, 255, 0.5); }
 
 #title {
-  width: 36rem; }
+  width: 30rem; }
 
 #hud {
-  width: 108rem;
+  width: 75rem;
   margin: 0.5rem; }
   #hud > div {
-    float: left;
-    margin-right: 4rem; }
-  #hud > div:last-child {
-    margin-right: 0; }
-  #hud #widgets {
-    width: 18rem; }
+    float: left; }
   #hud #site-location {
     position: relative;
-    top: 10rem;
-    width: 36rem; }
-  #hud #favorites {
+    margin: 0 -5rem 0 -5rem; }
+  #hud #favorites-left-template, #hud #favorites-right-template {
+    display: none; }
+  #hud .favorites {
+    width: calc(3 * 9rem + .4rem);
     position: relative;
-    top: 10rem;
-    width: calc(5 * 9rem + 5px); }
+    top: 5rem; }
 
 .comp-links {
   margin: 0;
@@ -91,6 +87,42 @@ body {
   float: left;
   cursor: pointer;
   text-transform: uppercase; }
+
+.current {
+  width: 30rem;
+  text-align: center; }
+  .current h1 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 0.1rem;
+    font-weight: 400; }
+  .current .globe {
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 0.3rem solid white;
+    position: relative;
+    margin: 2rem; }
+  .current .globe:before, .current .globe:after {
+    content: " ";
+    border-radius: 50%;
+    border: 0.1rem solid rgba(255, 255, 255, 0.5);
+    position: absolute; }
+  .current .globe:before {
+    width: 12rem;
+    height: 12rem;
+    top: -1.3rem;
+    left: -1.3rem; }
+  .current .globe:after {
+    width: 14rem;
+    height: 14rem;
+    top: -2.3rem;
+    left: -2.3rem; }
+  .current .authors {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin: 1rem 0 0 0; }
 
 .frame {
   border: 0.3rem solid white;
@@ -208,31 +240,32 @@ body {
   letter-spacing: 0.075rem;
   text-align: center; }
 
-#favorites-template {
-  display: none; }
-
 .fav {
   width: calc(9rem - 1px);
   height: calc(9rem - 1px);
   padding: 1rem;
   background: white;
-  margin: 0.5px;
+  margin: 0.1rem;
+  border-radius: 0.5rem;
   float: left;
   position: relative;
   cursor: pointer;
-  color: black; }
+  color: black;
+  display: table;
+  overflow: hidden;
+  table-layout: fixed; }
 
 .fav-inner {
-  position: absolute;
-  bottom: 1rem;
-  width: calc(100% - 2rem);
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.5rem;
   letter-spacing: 0.0175rem;
   text-transform: uppercase;
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle; }
 
 .fav:hover {
   background: rgba(23, 150, 218, 0.3); }
