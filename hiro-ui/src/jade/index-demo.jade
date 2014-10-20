@@ -1,0 +1,114 @@
+extends layouts/master
+
+block scripts
+	script(type="text/javascript", src="js/lib/three.min.js")
+	script(type="text/javascript", src="js/dom2three.js")
+	script(type="text/javascript", src="js/demo.js")
+
+mixin fav(title)
+	.fav
+		.fav-inner #{title}
+
+mixin comp-link(title, link)
+	li.comp-link
+		a.button(href='#{link}') #{title}
+
+block content
+	.content
+
+		.break
+			hr
+			| Site Frame
+
+		include ./modules/siteframe.jade
+
+		.break
+			hr
+			| Location Bar
+
+		include ./modules/locationbar.jade
+
+
+		.cf
+		.break
+			hr
+			| Keyboard
+
+		.keyboard
+			ul.cf
+				li q
+				li w
+				li e
+				li r
+				li t
+				li y
+				li u
+				li i
+				li o
+				li p
+			ul.cf
+				li a
+				li s
+				li d
+				li f
+				li(tabindex="3") g
+				li h
+				li j
+				li k
+				li l
+			ul.cf
+				li.shift -
+				li z
+				li x
+				li c
+				li v
+				li b
+				li n
+				li m
+				li.delete -
+			ul.cf
+				li.alternate 123
+				li.languages -
+				li.space(tabindex="4") Space
+				li.period .
+				li.enter Enter
+
+
+		.cf
+		.break
+			hr
+			| Doorhanger
+
+		.doorhanger
+			.box
+				h1 Would you like to show notifications for localhost?
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				.close
+			.button.secondary(tabindex="5") Allow
+			.button.primary(tabindex="6") Deny
+
+
+
+
+
+		.cf
+		.break
+			hr
+			| Call
+
+		.call
+			.box
+				img(src='images/vlad.png')
+				h2 Incoming Call
+				h1 Vlad Vukicevic
+				.close
+			.button.secondary(tabindex="7") Ignore
+			.button.primary(tabindex="8") Answer
+
+		.cf
+		.break
+			hr
+			| Widgets
+
+
+		include ./modules/widgets.jade

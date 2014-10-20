@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--
+
+	document.querySelector('#call-title').innerHTML = 'Change me';
+	document.querySelector('#time').innerHTML = 'Change me';
+
+-->
+<html lang="en">
+	<head>
+		<title>VR WebGL boilerplate using three.js</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				padding: 0;
+				overflow: hidden;
+			}
+		</style>
+		<link rel='stylesheet' href='fonts/montserrat/montserrat.css' type='text/css'>
+	</head>
+	<body>
+		<script src="js/three.min.js"></script>
+
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/DigitalGlitch.js"></script>
+
+		<script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/MaskPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		<script src="js/postprocessing/GlitchPass.js"></script>
+
+
+		<script src="js/VRControls.js"></script>
+		<script src="js/VREffect.js"></script>
+		<script src="js/DeviceOrientationControls.js"></script>
+		<script src="js/StereoEffect.js"></script>
+		<script src="js/vrclient.js"></script>
+		<script src="../dom2three.js"></script>
+
+
+
+		<script>
+			var parseURLSearch = function () {
+				var parameters = {};
+				var parts = window.location.search.substr( 1 ).split( '&' );
+				for ( var i = 0; i < parts.length; i ++ ) {
+					var parameter = parts[ i ].split( '=' );
+					parameters[ parameter[ 0 ] ] = parameter[ 1 ];
+				}
+				return parameters;
+			}
+			var parameters = parseURLSearch();
+
+			var camera, scene, renderer;
+			var controls, effect;
+
+			var geometry, texture, material, mesh;
+
+			var glitchPass, composer;
+
+
+			init();
+			animate();
+
+			function init() {
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.autoClear = true;
+				renderer.setClearColor( 0x000000, 0 );
+				document.body.appendChild( renderer.domElement );
+				scene = new THREE.Scene();
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+
+				// parse url parameter and set appropriate rendering effect.
+				if ( parameters.mode === 'cardboard' ) {
+					controls = new THREE.DeviceOrientationControls( camera );
+					effect = new THREE.StereoEffect( renderer );
+				} else {
+					controls = new THREE.VRControls( camera );
+					effect = new THREE.VREffect( renderer );
+				}
+				effect.setSize( window.innerWidth, window.innerHeight );
+
+				// listen for double clicks to initiate full-screen/VR mode.
+				document.body.addEventListener( 'dblclick', function () {
+					effect.setFullScreen( true );
+				} );
+
+
+				// dom2three example
+				var d23 = new DOM2three('../scrape/demo/index.json');
+
+				d23.onload = function() {
+
+					var title = d23.getMesh('.widget-medium');
+					title.position.set(0, -300, -500);
+					d23.setText('.clock-time', '4:20');
+					scene.add(title);
+
+					var clockEl = document.createElement('div');
+					clockEl.id = 'time';
+					clockEl.innerHTML = '4:20';
+					clockEl.addEventListener('DOMSubtreeModified', function() {
+						d23.setText('.clock-time', clockEl.innerHTML);
+					})
+					document.body.appendChild(clockEl);
+
+
+
+					var frame = d23.getMesh('.frame');
+					//frame.scale.set(0.5,0.5,0.5);
+					frame.position.set(-300, -100, -600);
+					d23.setText('.title h1', 'JOSH CARPENTER');
+					d23.setText('.authors', 'HTML5 DEV CONF');
+					scene.add(frame);
+
+
+
+					var callgroup = new THREE.Group();
+
+					var call = d23.getMesh('.call .box');
+					call.position.set(0, 50, 0);
+					d23.setText('h2', 'INCOMING CALL');
+					callgroup.add(call);
+
+					var callEl = document.createElement('h2');
+					callEl.id = 'call-title';
+					callEl.innerHTML = 'INCOMING CALL';
+					callEl.addEventListener('DOMSubtreeModified', function() {
+						d23.setText('h2', callEl.innerHTML);
+					})
+					document.body.appendChild(callEl);
+
+
+					var callbt1 = d23.getMesh('.call .secondary');
+					callbt1.position.set(-180, -90, 0);
+					callgroup.add(callbt1);
+
+					var callbt2 = d23.getMesh('.call .primary');
+					callbt2.position.set(30, -90, 0);
+					callgroup.add(callbt2);
+
+					scene.add(callgroup);
+					callgroup.position.set(300, 0, -500);
+					callgroup.rotation.y= 0 * (Math.PI/180)
+
+
+					var kb = d23.getMesh('.keyboard');
+					kb.position.set(0, 200, -600);
+					scene.add(kb);
+
+
+				}
+
+				composer = new THREE.EffectComposer( renderer );
+				composer.addPass( new THREE.RenderPass( scene, camera ) );
+
+				glitchPass = new THREE.GlitchPass();
+				glitchPass.renderToScreen = true;
+				composer.addPass( glitchPass );
+
+				updateOptions();
+
+				// var d2t = new Dom2three({ imageUrl: '../scrape/index.png', dataUrl: '../scrape/index.json' }, function() {
+				// 	var mesh = d2t.create('dialogue');
+				// 	mesh.position.y = 5;
+				// 	mesh.position.z = -30;
+				// 	//mesh.rotation.y = -45*(Math.PI/180)
+				// 	scene.add( mesh );
+
+				// 	var mesh = d2t.create('bluebtn');
+				// 	mesh.position.y = -2;
+				// 	mesh.position.z = -30;
+				// 	// mesh.rotation.y = -45*(Math.PI/180)
+				// 	scene.add( mesh );
+				// });
+
+				// // announce to JAVRIS host that we are ready to go.
+				// VRClient.ready();
+
+				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'keypress', onKey, true);
+
+			}
+			function updateOptions() {
+				// var wildGlitch = document.getElementById('wildGlitch');
+				// glitchPass.goWild=wildGlitch.checked;
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				effect.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			var glitch = false;
+			function toggleGlitch() {
+
+				glitch = true;
+				setTimeout(function() {
+					glitch = false;
+				}, 3000);
+			}
+
+			function getRand(min, max) {
+			    return Math.random() * (max - min) + min;
+			}
+
+			var meshes = null;
+
+			function makeShapes() {
+				if (meshes) {
+					scene.remove(meshes);
+					meshes = null;
+					return false;
+				}
+				var shapeCount = 80
+				meshes = new THREE.Group();
+
+				for (var i = 0; i < shapeCount; i++) {
+					var size =  getRand(10,200);
+
+					var geometry = new THREE.IcosahedronGeometry(size, 1 );
+				  var material = new THREE.MeshBasicMaterial( { color: 0x00ffff, wireframe: Math.round(Math.random()), transparent: true, opacity: 0.2, side: THREE.DoubleSide } );
+				  var mesh = new THREE.Mesh( geometry, material );
+
+				  mesh.position.set(getRand(-800, 800), getRand(-800, 800), getRand(1000, -1000));
+
+				  meshes.add(mesh);
+
+			  	scene.add(meshes);
+			  }
+
+
+			}
+			function onKey(event) {
+        if (!(event.metaKey || event.altKey || event.ctrlKey)) {
+          event.preventDefault();
+        }
+
+        switch (event.key) {
+        	case '1': //
+        		toggleGlitch();
+        		break;
+        	case '2':
+        		makeShapes();
+        		break;
+          case 'z': // z
+            VRClient.zeroSensor();
+            break;
+        }
+      }
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+				if (meshes) {
+					meshes.rotation.y+=0.001;
+				}
+				controls.update();
+				if (glitch) {
+					composer.render();
+				} else {
+					renderer.render( scene, camera );
+				}
+
+			}
+		</script>
+
+
+	</body>
+</html>

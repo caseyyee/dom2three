@@ -22,12 +22,10 @@ var slimer = './renderer/slimerjs-0.9.3/slimerjs renderer/script.js ';
 var imagemagick = './renderer/makealpha.sh ';
 
 var scrapes = [
-  slimer+'http://localhost:8000/index-hud.html scrape/hud',
-  slimer+'http://localhost:8000/index-title.html scrape/title'
+  slimer+'http://localhost:8000/index-demo.html scrape/demo'
 ];
 var alpha = [
-  imagemagick+'scrape/hud/index-ffff00.png scrape/hud/index-0000ff.png scrape/hud/index.png',
-  imagemagick+'scrape/title/index-ffff00.png scrape/title/index-0000ff.png scrape/title/index.png'
+  imagemagick+'scrape/demo/index-ffff00.png scrape/demo/index-0000ff.png scrape/demo/index.png'
 ];
 
 gulp.task('dom2three', function() {
