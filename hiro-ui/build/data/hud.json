@@ -1,0 +1,120 @@
+{
+	"texture": "index.png",
+	"items": [
+	  {
+	    "selector": "#site-location",
+	    "content": [
+	      {
+	        "selector": ".authors",
+	        "content": "Someone Great"
+	      },
+	      {
+	        "selector": ".title h1",
+	        "content": "Fantastic Example"
+	      }
+	    ]
+	  },
+	  {
+	    "selector": "#favorites-left-template",
+	    "clone": true,
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": ".fav-inner",
+	        "content": "Sechelt"
+	      }
+	    ],
+	    "userData": {
+	      "title": "SECHELT",
+	      "url": "http://mozvr.github.io/sechelt",
+	      "author": "JOSH CARPENTER, MR. DOOB",
+	      "tech": "three.js"
+	    }
+	  },
+	  {
+	    "selector": "#favorites-left-template",
+	    "clone": true,
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": ".fav-inner",
+	        "content": "Polar Sea"
+	      }
+	    ],
+	    "userData": {
+	      "title": "POLAR SEA TRAILER",
+	      "url": "http://mozvr.github.io/polarsea/index.html",
+	      "author": "DEEP INC",
+	      "tech": "WEBGL"
+	    }
+	  },
+	  {
+	    "selector": "#favorites-left-template",
+	    "clone": true,
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": ".fav-inner",
+	        "content": "Flying Cubes"
+	      }
+	    ],
+	    "userData": {
+	      "title": "FLYING CUBES",
+	      "url": "./content/cubes/index.html",
+	      "author": "SOMEONE GREAT",
+	      "tech": "WebGL"
+	    }
+	  },
+	  {
+	    "selector": "#favorites-right-template",
+	    "clone": true,
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": ".fav-inner",
+	        "content": "Leap motion"
+	      }
+	    ],
+	    "userData": {
+	      "title": "LEAP MOTION",
+	      "url": "./content/sechelt/index.html",
+	      "author": "SOMEONE GREAT",
+	      "tech": "WebGL"
+	    }
+	  },
+	  {
+	    "selector": "#favorites-right-template",
+	    "clone": true,
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": ".fav-inner",
+	        "content": "Reddit"
+	      }
+	    ],
+	    "userData": {
+	      "title": "REDDIT",
+	      "url": "./content/sechelt/index.html",
+	      "author": "SOMEONE GREAT",
+	      "tech": "WebGL"
+	    }
+	  },
+	  {
+	    "selector": "#favorites-right-template",
+	    "clone": true,
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": ".fav-inner",
+	        "content": "Vizicities"
+	      }
+	    ],
+	    "userData": {
+	      "title": "VIZICITIES",
+	      "url": "./content/sechelt/index.html",
+	      "author": "SOMEONE GREAT",
+	      "tech": "WebGL"
+	    }
+	  }
+	]
+}

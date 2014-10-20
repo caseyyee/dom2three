@@ -1,0 +1,32 @@
+{
+	"texture": "index.png",
+	"items": [
+	  {
+	    "selector": ".call .box",
+	    "content": [
+	      {
+	        "selector": "h2",
+	        "content": "INCOMING MESSAGE",
+	        "font": "normal 400 24.5px Montserrat",
+	        "fillStyle": "rgb(102, 102, 102)",
+	        "canvas": true
+	      }
+	    ]
+	  },
+	  {
+      "selector": ".call .secondary"
+    },
+    {
+      "selector": ".call .primary"
+    },
+    {
+      "selector": ".widget-small"
+    },
+    {
+      "selector": ".widget-medium"
+    },
+		{
+      "selector": ".keyboard"
+    }
+	]
+}

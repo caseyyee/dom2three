@@ -1,0 +1,67 @@
+{
+	"texture": "index.png",
+	"items": [
+	  {
+	    "selector": ".call .box",
+	    "display": true,
+	    "content": [
+	      {
+	        "selector": "h2",
+	        "content": "INCOMING MESSAGE",
+	        "font": "normal 400 24.5px Montserrat",
+	        "fillStyle": "rgb(102, 102, 102)",
+	        "canvas": true
+	      }
+	    ]
+	  },
+	  {
+      "selector": ".call .secondary",
+      "display": true
+    },
+    {
+      "selector": ".call .primary",
+      "display": true
+    },
+    {
+      "selector": ".widget-small",
+      "display": true
+    },
+    {
+      "selector": ".widget-medium",
+      "display": true,
+      "content": [
+	      {
+	        "selector": ".clock-time",
+	        "content": "4:20",
+	        "font": "normal 400 70px Montserrat",
+	        "fillStyle": "rgb(0, 0, 0)",
+	        "canvas": true
+	      }
+	    ]
+    },
+		{
+      "selector": ".keyboard",
+      "display": true
+    },
+    {
+    	"selector": ".frame",
+    	"display": true,
+	    "content": [
+	      {
+	        "selector": ".authors",
+	        "content": "Your name",
+	        "font": "normal 400 17.5px Montserrat",
+	        "fillStyle": "rgb(255, 255, 255)",
+	        "canvas": true
+	      },
+	      {
+	        "selector": ".title h1",
+	        "content": "Road to VR",
+	        "font": "normal 400 17.5px Montserrat",
+	        "fillStyle": "rgb(255, 255, 255)",
+	        "canvas": true
+	      }
+	    ]
+	  }
+	]
+}
