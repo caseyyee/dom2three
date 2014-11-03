@@ -8,14 +8,22 @@ block scripts
 block content
 
 	#hud.cf
+		
+		include ./modules/section-health.jade
+
+		include ./modules/section-controls.jade
+
+		include ./modules/currentsite.jade
+
+		include ./modules/section-favorites.jade
+
+		include ./modules/tips.jade
+
+		include ./modules/section-credits.jade
+
 		.favorites.cf
 			#favorites-left-template.fav
 				.fav-inner Favorites name
 
 		#site-location
-			include ./modules/currentsite.jade
-
-		.favorites.cf
-			#favorites-right-template.fav
-				.fav-inner Favorites name
-
+			//include ./modules/currentsite.jade

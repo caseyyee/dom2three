@@ -1,7 +1,9 @@
-$font-small: 1.25rem;
-$font-med: 1.5rem;
+$font-small: 1.5rem;
+$font-med: 2rem;
 $font-large: 1.75rem;
 $font-mega: 2.5rem;
+
+$layout-horizontal-line: 32rem;
 
 $border-med: 0.25rem solid white;
 $hoverBlue: rgba( 23, 150, 218, 0.3rem );
@@ -13,7 +15,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	font-family: 'Montserrat';
-	font-size: 14px;
+	font-size: 8px;
 	font-weight: 400;
 	margin: 0;
 	padding: 0rem;
@@ -29,7 +31,6 @@ body {
   	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
-
 .header {
 	font-size: 4rem;
 	font-weight: 500;
@@ -38,7 +39,7 @@ body {
 }
 
 .content  {
-	width: 800px;
+	width: 120rem;
 	margin: 4rem;
 }
 
@@ -60,120 +61,438 @@ body {
 :focus {
 	transform-style: preserve-3d;
 	transform: scaleX(1) scaleY(1);
-	//transform: translate3d( 0, 0, 0 );
 	outline: 0.3rem solid rgba( 255, 255, 255, 0.5 );
 }
 
-//---------- Layout ----------//
-// title screen
+
+
+
+
+
+
+
+
+
+
+//---------- HUD Layout ----------//
+
 #title {
 	width: 30rem;
 }
-// hud
-#hud {
-	width: 75rem;
-	margin: 0.5rem;
 
+#hud {
+
+	width: 360rem;
+	height: 90rem;
+	margin: 0rem;
+	background: rgba( 0, 0, 0, 0.25 );
+
+	/*
 	> div {
 		float: left;
 	}
+	*/
 
+	.current {
+		position: absolute;
+		left: 145rem;
+		top: $layout-horizontal-line - 10rem;
+		opacity: 0.9;
+		border-color: rgba( 255, 255, 255, 0.5 );
+
+		.credits {
+			opacity: 0.25;
+		}
+	}
+
+	.section.favorites {
+		position: absolute;
+		left: 120rem;
+		top: $layout-horizontal-line;
+	}
+
+	.favorites {
+		position: absolute;
+		left: 120rem;
+		top: $layout-horizontal-line  + 4.5rem;
+	}
+
+	.section.health{
+		position: absolute;
+		left: 42rem;
+		top: $layout-horizontal-line;
+	}
+
+	.section.controls{
+		position: absolute;
+		left: 80rem;
+		top: $layout-horizontal-line;
+	}
+
+	.tips{
+		position: absolute;
+		left: 140rem;
+		top: $layout-horizontal-line + 40rem;
+	}
+
+	.section.credits{
+		position: absolute;
+		left: 300rem;
+		top: $layout-horizontal-line;
+	}
+
+
+
+	/*
 	#site-location {
 		position: relative;
 		margin: 0 -5rem 0 -5rem;
 	}
-
+	*/
 
 	#favorites-left-template, #favorites-right-template {
 		display: none;
 	}
+	
 
-	.favorites {
-		width: calc(3 * 9rem + .4rem);
-		position: relative;
-		top: 5rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------- Current Site ----------//
+
+.current {
+
+	width: 70rem;
+	height: 50rem;
+	border: 1.5rem solid rgba( 255, 255, 255, 1 );
+	text-transform: uppercase;
+	padding: 1.5rem;
+	position: relative;
+
+	.title {
+		width: 62%;
+		padding: 1rem 1.2rem;
+		color: rgba( 77, 77, 77, 1 );
+		background: rgba( 255, 255, 255, 1 );
+		font-size: $font-med;
+		letter-spacing: 0.05rem;
+		font-weight: 700;
+	}
+
+	.url {
+		width: 62%;
+		padding: 0.8rem 1.2rem;
+		color: white;
+		background-color: rgba( 255, 255, 255, 0.25 );
+		font-size: $font-small;
+		letter-spacing: 0.15rem;
+	}
+
+	.credits {
+
+		width: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: $font-med;
+		letter-spacing: 0.05rem;
+		position: absolute;
+		bottom: 1.5rem;
+
+		.tools {
+			font-size: $font-small;
+			letter-spacing: 0.15rem;
+		}
 	}
 }
 
-//---------- Composition links ----------//
-.comp-links {
+
+
+//---------- Favorites ----------//
+
+.fav {
+	//width: calc(9rem - 1px);
+	//height: calc(9rem - 1px);
+	width: 20rem;
+	height: 30rem;
+	margin: 0 2.75rem 2.75rem 0;
+	background: #fff;
+	float: left;
+	position: relative;
+	cursor: pointer;
+	color: #000;
+	//display: table;
+	overflow: hidden;
+	//table-layout: fixed;
+ 
+  img {
+  	width: 100%;
+  	height: 20rem;
+  	vertical-align: bottom;
+  }
+}
+
+.fav-inner {
+	width: 100%;
+	height: 10rem;
+	padding: 1.5rem;
+	font-size: $font-med;
+	font-weight: 700;
+	line-height: $font-small + 0.25rem;
+	letter-spacing: 0.0175rem;
+	text-transform: uppercase;
+	color: rgba( 77, 77, 77, 1 );
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
+	display: table-cell;
+  //vertical-align: middle;
+
+  .type {
+  	font-size: $font-small;
+  	font-weight: 400;
+  	color: rgba( 133, 133, 133, 1 )
+  }
+
+}
+
+.fav:hover {
+	background: $hoverBlue;
+}
+
+.fav:active {
+	color: white;
+	background: $pressBlue;
+}
+
+
+
+//---------- Tips ----------//
+
+.tips {
 	margin: 0;
 	padding: 0;
 }
-.comp-link {
-	float: left;
-	list-style: none;
-}
-.comp-link a {
-	text-decoration: none;
-}
 
-.button {
-	width: 14rem;
-	height: 4.5rem;
-	padding: 1rem;
-	letter-spacing: 0.075rem;
-	margin: 1.5rem 1rem 0 0;
-	border: 0.4rem solid white;
+.tip {
+	margin: 0 5rem 0 0;
+	padding: 0;
 	font-size: $font-med;
-	font-weight: 400;
-	text-align: center;
-	color: white;
-	float: left;
-	cursor: pointer;
+	letter-spacing: 0.1rem;
 	text-transform: uppercase;
+	font-size: $font-small;
+	display: inline-block;
+
+	li {
+		float: left;
+		list-style: none;
+		padding: 0.6rem;
+	}
+
+	.key {
+		width: 7rem;
+		border: 0.25rem solid white;
+		text-align: center;
+		font-weight: 700;
+		
+	}
+
+	.text {
+		list-style: none;
+		margin: 0 0.5rem;
+		border: 0.25rem solid rgba( 255, 255, 255, 0 );
+		font-weight: 400;
+	}
+
 }
 
-//---------- Current Site ----------//
-.current {
+.tip:hover {
+	background: rgba( 255, 255, 255, 0.15 );
+	cursor: pointer;
+
+	.key {
+		background: rgba( 255, 255, 255, 0.5 );
+	}
+
+}
+
+//---------- Section ----------//
+
+.section {
+
+	border-top: 0.8rem solid rgba( 255, 255, 255, 0.2 );
+	text-transform: uppercase;
+	font-size: $font-small;
+	letter-spacing: 0.1rem;
+	display: inline-block;
+	margin: 0 5rem 0 0;
+
+	.title {
+		padding: 0.4rem 0 2rem;
+		color: rgba( 255, 255, 255, 0.5 );
+		font-weight: 700;
+	}
+
+}
+
+.section.favorites {
+
+	width: 20rem;
+}
+
+.section.health {
+
 	width: 30rem;
-	text-align: center;
 
-  h1 {
-  	text-transform: uppercase;
-  	font-size: 1.25rem;
-  	letter-spacing: 0.1rem;
-  	font-weight: 400;
-  }
-
-	.globe {
-		display: inline-block;
-		width: 10rem;
-		height: 10rem;
-		border-radius: 50%;
-		border: 0.3rem solid white;
-		position: relative;
-		margin: 2rem;
-	}
-	.globe:before, .globe:after {
-		content:  " ";
-		border-radius: 50%;
-		border: 0.1rem solid rgba(255,255,255,0.5);
-		position: absolute;
-	}
-	.globe:before {
-		width: 12rem;
-		height: 12rem;
-		top: -1.3rem;
-		left: -1.3rem;
-	}
-	.globe:after {
-		width: 14rem;
-		height: 14rem;
-		top: -2.3rem;
-		left: -2.3rem;
-	}
-
-	.authors {
-		font-size: $font-small;
-		text-transform: uppercase;
-		margin: 1rem 0 0 0;
+	p {
+		margin: 0;
+		padding: 0;
+		color: rgba( 255, 255, 255, 0.75 );
+		line-height: $font-small + 0.6rem;
+		-moz-hyphens: auto;
+		hyphens: auto;
 	}
 }
 
+.section.controls {
+
+	width: 24rem;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		font-size: $font-med;
+		letter-spacing: 0.1rem;
+		text-transform: uppercase;
+		font-size: $font-small;
+	}
+
+	li {
+		list-style: none;
+		padding: 0rem;
+		margin: 0 0 0.2rem 0;
+		word-wrap: nowrap;
+		width: 100%;
+	}
+
+	.key {
+		width: 30%;
+		font-weight: 700;
+		margin: 0 0.2rem 0 0;
+		padding: 1.25rem;
+		background: rgba( 23, 150, 218, 0.3 );
+		text-align: center;
+		font-weight: 700;
+		display: inline-block;
+	}
+
+	.text {
+		width: 69%;
+		padding: 1.25rem 1.25rem;
+		font-weight: 400;
+		display: inline-block;
+		background: rgba( 255, 255, 255, 0.2 );
+	}
+
+}
+
+.section.credits {
+
+	width: 30rem;
+
+	.logo {
+		padding: 2.4rem 0 0.6rem;
+		width: 20rem;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		font-size: $font-med;
+		letter-spacing: 0.1rem;
+		text-transform: uppercase;
+		font-size: $font-small;
+	}
+
+	li {
+		list-style: none;
+		padding: 0rem;
+		margin: 0 0 0.2rem 0;
+		word-wrap: nowrap;
+		width: 100%;
+		color: rgba( 255, 255, 255, 0.75 );
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //---------- Site Frame ----------//
 
 .frame {
+	
 	border: 0.3rem solid white;
 	width: 36rem;
 	height: 18rem;
@@ -190,8 +509,8 @@ body {
 		letter-spacing: 0.025rem;
 
 		li {
-			padding: 0;
 			margin: 0;
+			padding: 0;
 		}
 
 	}
@@ -222,9 +541,6 @@ body {
 		}
 	}
 }
-
-
-
 
 
 //---------- Location Bar ----------//
@@ -262,8 +578,39 @@ body {
 	color: black;
 
 }
+*/
 
 
+
+//---------- Composition links ----------//
+
+.comp-links {
+	margin: 0;
+	padding: 0;
+}
+.comp-link {
+	float: left;
+	list-style: none;
+}
+.comp-link a {
+	text-decoration: none;
+}
+
+.button {
+	width: 14rem;
+	height: 4.5rem;
+	padding: 1rem;
+	letter-spacing: 0.075rem;
+	margin: 1.5rem 1rem 0 0;
+	border: 0.4rem solid white;
+	font-size: $font-med;
+	font-weight: 400;
+	text-align: center;
+	color: white;
+	float: left;
+	cursor: pointer;
+	text-transform: uppercase;
+}
 
 
 
@@ -343,49 +690,6 @@ body {
 		text-align: center;
 	}
 }
-
-
-
-//---------- Favorites ----------//
-.fav {
-	width: calc(9rem - 1px);
-	height: calc(9rem - 1px);
-	padding: 1rem;
-	background: #fff;
-	margin: 0.1rem;
-	border-radius: 0.5rem;
-	float: left;
-	position: relative;
-	cursor: pointer;
-	color: #000;
-	display: table;
-	overflow: hidden;
-	table-layout: fixed;
-}
-
-.fav-inner {
-	font-size: $font-small;
-	font-weight: 400;
-	line-height: 1.5rem;
-	letter-spacing: 0.0175rem;
-	text-transform: uppercase;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-align: center;
-	display: table-cell;
-  vertical-align: middle;
-}
-
-.fav:hover {
-	background: $hoverBlue;
-}
-
-.fav:active {
-	color: white;
-	background: $pressBlue;
-}
-
-
 
 
 
@@ -471,8 +775,6 @@ body {
 	border: 0.4rem solid $pressBlue;
 	background-color: $pressBlue;
 }
-
-
 
 
 
@@ -574,8 +876,6 @@ body {
 
 
 
-
-
 //---------- Widgets ----------//
 
 .widget-medium {
@@ -652,6 +952,8 @@ body {
 .clock-alarm:last-child {
 	border: none;
 }
+
+
 
 //---------- Utilities ----------//
 

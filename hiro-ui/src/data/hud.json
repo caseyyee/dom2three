@@ -27,13 +27,29 @@
       "content": [
         {
           "selector": ".fav-inner",
+          "content": "Virtual Reality & The Web: Next Steps"
+        }
+      ],
+      "userData": {
+        "title": "SECHELT",
+        "url": "http://mozvr.github.io/sechelt",
+        "author": "JOSH CARPENTER, MR DOOB"
+      }
+    },
+    {
+      "selector": "#favorites-left-template",
+      "clone": true,
+      "display": true,
+      "content": [
+        {
+          "selector": ".fav-inner",
           "content": "Sechelt"
         }
       ],
       "userData": {
         "title": "SECHELT",
         "url": "http://mozvr.github.io/sechelt",
-        "author": "JOSH CARPENTER, MR. DOOB"
+        "author": "JOSH CARPENTER, MR DOOB"
       }
     },
     {
@@ -59,39 +75,7 @@
       "content": [
         {
           "selector": ".fav-inner",
-          "content": "Flying Cubes"
-        }
-      ],
-      "userData": {
-        "title": "FLYING CUBES",
-        "url": "./content/cubes/index.html",
-        "author": ""
-      }
-    },
-    {
-      "selector": "#favorites-right-template",
-      "clone": true,
-      "display": true,
-      "content": [
-        {
-          "selector": ".fav-inner",
-          "content": "Panorama Viewier"
-        }
-      ],
-      "userData": {
-        "title": "PANORAMA VIEWER",
-        "url": "http://mozvr.github.io/panorama-viewer/",
-        "author": "JOSH CARPENTER"
-      }
-    },
-    {
-      "selector": "#favorites-right-template",
-      "clone": true,
-      "display": true,
-      "content": [
-        {
-          "selector": ".fav-inner",
-          "content": "Info Dive"
+          "content": "Information Diving"
         }
       ],
       "userData": {
@@ -101,19 +85,52 @@
       }
     },
     {
-      "selector": "#favorites-right-template",
+      "selector": "#favorites-left-template",
       "clone": true,
       "display": true,
       "content": [
         {
           "selector": ".fav-inner",
-          "content": "Vizicities"
+          "content": "Panoramas"
         }
       ],
       "userData": {
-        "title": "VIZICITIES",
+        "title": "PANORAMAS",
+        "url": "http://mozvr.github.io/panorama-viewer/",
+        "author": "JOSH CARPENTER"
+      }
+    },
+    {
+      "selector": "#favorites-left-template",
+      "clone": true,
+      "display": true,
+      "content": [
+        {
+          "selector": ".fav-inner",
+          "content": "Leap Motion"
+        }
+      ],
+      "userData": {
+        "title": "LEAP MOTION",
         "url": "./content/sechelt/index.html",
-        "author": "SOMEONE GREAT",
+        "author": "PETER EHRLICH",
+        "tech": "Leap Motion JS API, WebGL"
+      }
+    },
+    {
+      "selector": "#favorites-left-template",
+      "clone": true,
+      "display": true,
+      "content": [
+        {
+          "selector": ".fav-inner",
+          "content": "eleVR: Talk Chat Show Ep.4"
+        }
+      ],
+      "userData": {
+        "title": "ELEVR: TALK CHAT SHOW, EP.4",
+        "url": "./content/sechelt/index.html",
+        "author": "ELEVR",
         "tech": "WebGL"
       }
     }
