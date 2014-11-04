@@ -16,26 +16,27 @@ page.open(url, function(status) {
       console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
     };
 
+    // pickup the script tag with dom2three element data and persist it into a json file.
     var uidata = page.evaluate(function() {
-    	return document.querySelector('#uidata').innerHTML;
+    	return document.querySelector('#dom2three').innerHTML;
     });
 
     fs.write(writePath+'/index.json', uidata);
-    console.log('d23 saved '+writePath+'/index.json');
+    console.log('saved '+writePath+'/index.json');
 
     // write blue component image
     page.evaluate(function() {
       document.body.style.background = '#0000FF';
     });
     page.render(writePath+'/index-0000ff.png');
-    console.log('d23 saved '+writePath+'/index-0000ff.png');
+    console.log('saved '+writePath+'/index-0000ff.png');
 
     // write yellow component image
     page.evaluate(function() {
-      document.body.style.background = '#ffff00';
+      document.body.style.background = '#FFFF00';
     });
     page.render(writePath+'/index-ffff00.png');
-    console.log('d23 saved '+writePath+'/index-ffff00.png');
+    console.log('saved '+writePath+'/index-ffff00.png');
 
    	phantom.exit();
   }, 200);

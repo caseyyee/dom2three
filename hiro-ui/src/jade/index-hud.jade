@@ -1,29 +1,22 @@
 extends layouts/master
 
 block scripts
-	script(type="text/javascript", src="js/lib/three.min.js")
-	script(type="text/javascript", src="js/dom2three.js")
-	script(type="text/javascript", src="js/hud.js")
+	script(type="text/javascript", src="../../dom2three.js")
+	script.
+		DOM2three.save()
 
 block content
 
 	#hud.cf
-		
+
 		include ./modules/section-health.jade
 
 		include ./modules/section-controls.jade
 
-		include ./modules/currentsite.jade
+		//include ./modules/currentsite.jade
 
 		include ./modules/section-favorites.jade
 
 		include ./modules/tips.jade
 
 		include ./modules/section-credits.jade
-
-		.favorites.cf
-			#favorites-left-template.fav
-				.fav-inner Favorites name
-
-		#site-location
-			//include ./modules/currentsite.jade

@@ -1,11 +1,5 @@
 extends layouts/master
 
-mixin fav(title, type, image)
-	.fav
-		.fav-inner #{title}
-			.type #{type}
-		img( src='/images/thumbs/'+image )
-
 mixin comp-link(title, link)
 	li.comp-link
 		a.button(href='#{link}') #{title}
@@ -28,19 +22,6 @@ block content
 		//	| Favorites
 
 		include ./modules/section-favorites.jade
-
-
-		.cf
-		.break
-
-		+fav('VR & The Web: Next Steps', 'Blog', 'panoramas-1.jpg')
-		+fav('Sechelt', 'Demo', 'sechelt-1.jpg')
-		+fav('Polar Sea', 'Video', 'polarsea-1.jpg')
-		+fav('Information Diving', 'Demo', 'infodive-1.jpg')
-		+fav('Panorama', 'Demo', 'panoramas-1.jpg')
-		+fav('Leap Motion', 'Demo', 'leap-1.jpg')
-		+fav('elevr: Talk Chat Show ep.4', 'Interview', 'elevr-1.jpg')
-
 
 		.cf
 		.break
@@ -72,103 +53,3 @@ block content
 		//	| Credits
 
 		include ./modules/section-credits.jade
-
-
-
-
-
-
-
-
-		//
-			.cf
-			.break
-				hr
-				| Compositions
-
-			ul.comp-links.cf
-				+comp-link('HUD', 'index-hud.html')
-				+comp-link('Title', 'index-title.html')
-
-
-			.cf
-			.break
-				hr
-				| Keyboard
-
-			.keyboard
-				ul.cf
-					li q
-					li w
-					li e
-					li r
-					li t
-					li y
-					li u
-					li i
-					li o
-					li p
-				ul.cf
-					li a
-					li s
-					li d
-					li f
-					li(tabindex="3") g
-					li h
-					li j
-					li k
-					li l
-				ul.cf
-					li.shift -
-					li z
-					li x
-					li c
-					li v
-					li b
-					li n
-					li m
-					li.delete -
-				ul.cf
-					li.alternate 123
-					li.languages -
-					li.space(tabindex="4") Space
-					li.period .
-					li.enter Enter
-
-
-			.cf
-			.break
-				hr
-				| Doorhanger
-
-			.doorhanger
-				.box
-					h1 Would you like to show notifications for localhost?
-					p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					.close
-				.button.secondary(tabindex="5") Allow
-				.button.primary(tabindex="6") Deny
-
-
-			.cf
-			.break
-				hr
-				| Call
-
-			.call
-				.box
-					img(src='images/vlad.png')
-					h2 Incoming Call
-					h1 Vlad Vukicevic
-					.close
-				.button.secondary(tabindex="7") Ignore
-				.button.primary(tabindex="8") Answer
-
-
-			.cf
-			.break
-				hr
-				| Widgets
-
-
-			include ./modules/widgets.jade

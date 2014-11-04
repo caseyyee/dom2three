@@ -70,92 +70,46 @@ body {
 
 
 
+//---------- title Layout ----------//
 
-
+#currentsite {
+	/*
+	top left pixel is reserved for making the alpha channel,
+	shift the layout away to keep clear.
+	*/
+	position: absolute;
+	top: 1px;
+	left: 1px;
+}
 
 
 //---------- HUD Layout ----------//
 
-#title {
-	width: 30rem;
-}
-
 #hud {
-
-	width: 360rem;
-	height: 90rem;
-	margin: 0rem;
-	background: rgba( 0, 0, 0, 0.25 );
-
 	/*
-	> div {
+	top left pixel is reserved for making the alpha channel,
+	shift the layout away to keep clear.
+	*/
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	width: 286rem;
+
+	.section {
 		float: left;
+		margin-right: 15rem;
 	}
-	*/
 
-	.current {
+	.section:last-child {
+		margin-right: 0;
+	}
+
+	#tips {
 		position: absolute;
-		left: 145rem;
-		top: $layout-horizontal-line - 10rem;
-		opacity: 0.9;
-		border-color: rgba( 255, 255, 255, 0.5 );
-
-		.credits {
-			opacity: 0.25;
-		}
+		left: 84rem;
+		top: 40rem;
+		width: 50rem;
 	}
-
-	.section.favorites {
-		position: absolute;
-		left: 120rem;
-		top: $layout-horizontal-line;
-	}
-
-	.favorites {
-		position: absolute;
-		left: 120rem;
-		top: $layout-horizontal-line  + 4.5rem;
-	}
-
-	.section.health{
-		position: absolute;
-		left: 42rem;
-		top: $layout-horizontal-line;
-	}
-
-	.section.controls{
-		position: absolute;
-		left: 80rem;
-		top: $layout-horizontal-line;
-	}
-
-	.tips{
-		position: absolute;
-		left: 140rem;
-		top: $layout-horizontal-line + 40rem;
-	}
-
-	.section.credits{
-		position: absolute;
-		left: 300rem;
-		top: $layout-horizontal-line;
-	}
-
-
-
-	/*
-	#site-location {
-		position: relative;
-		margin: 0 -5rem 0 -5rem;
-	}
-	*/
-
-	#favorites-left-template, #favorites-right-template {
-		display: none;
-	}
-	
-
-
 }
 
 
@@ -178,10 +132,9 @@ body {
 
 //---------- Current Site ----------//
 
-.current {
-
+#current {
 	width: 70rem;
-	height: 50rem;
+	height: 55rem;
 	border: 1.5rem solid rgba( 255, 255, 255, 1 );
 	text-transform: uppercase;
 	padding: 1.5rem;
@@ -242,12 +195,15 @@ body {
 	//display: table;
 	overflow: hidden;
 	//table-layout: fixed;
- 
+
   img {
   	width: 100%;
   	height: 20rem;
   	vertical-align: bottom;
   }
+}
+.fav:last-child {
+	margin-right: 0;
 }
 
 .fav-inner {
@@ -274,9 +230,9 @@ body {
 
 }
 
-.fav:hover {
-	background: $hoverBlue;
-}
+// .fav:hover {
+// 	background: $hoverBlue;
+// }
 
 .fav:active {
 	color: white;
@@ -312,7 +268,7 @@ body {
 		border: 0.25rem solid white;
 		text-align: center;
 		font-weight: 700;
-		
+
 	}
 
 	.text {
@@ -337,13 +293,12 @@ body {
 //---------- Section ----------//
 
 .section {
-
 	border-top: 0.8rem solid rgba( 255, 255, 255, 0.2 );
 	text-transform: uppercase;
 	font-size: $font-small;
 	letter-spacing: 0.1rem;
 	display: inline-block;
-	margin: 0 5rem 0 0;
+	margin: 0;
 
 	.title {
 		padding: 0.4rem 0 2rem;
@@ -353,13 +308,11 @@ body {
 
 }
 
-.section.favorites {
-
-	width: 20rem;
+#favorites {
+	width: 156.5rem;
 }
 
-.section.health {
-
+#health {
 	width: 30rem;
 
 	p {
@@ -372,8 +325,7 @@ body {
 	}
 }
 
-.section.controls {
-
+#controls {
 	width: 24rem;
 
 	ul {
@@ -414,8 +366,7 @@ body {
 
 }
 
-.section.credits {
-
+#credits {
 	width: 30rem;
 
 	.logo {
@@ -492,7 +443,7 @@ body {
 //---------- Site Frame ----------//
 
 .frame {
-	
+
 	border: 0.3rem solid white;
 	width: 36rem;
 	height: 18rem;

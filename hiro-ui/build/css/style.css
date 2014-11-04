@@ -44,68 +44,43 @@ body {
   transform: scaleX(1) scaleY(1);
   outline: 0.3rem solid rgba(255, 255, 255, 0.5); }
 
-#title {
-  width: 30rem; }
+#currentsite {
+  /*
+	top left pixel is reserved for making the alpha channel,
+	shift the layout away to keep clear.
+	*/
+  position: absolute;
+  top: 1px;
+  left: 1px; }
 
 #hud {
-  width: 360rem;
-  height: 90rem;
-  margin: 0rem;
-  background: rgba(0, 0, 0, 0.25);
   /*
-	> div {
-		float: left;
-	}
+	top left pixel is reserved for making the alpha channel,
+	shift the layout away to keep clear.
 	*/
-  /*
-	#site-location {
-		position: relative;
-		margin: 0 -5rem 0 -5rem;
-	}
-	*/ }
-  #hud .current {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 286rem; }
+  #hud .section {
+    float: left;
+    margin-right: 15rem; }
+  #hud .section:last-child {
+    margin-right: 0; }
+  #hud #tips {
     position: absolute;
-    left: 145rem;
-    top: 22rem;
-    opacity: 0.9;
-    border-color: rgba(255, 255, 255, 0.5); }
-    #hud .current .credits {
-      opacity: 0.25; }
-  #hud .section.favorites {
-    position: absolute;
-    left: 120rem;
-    top: 32rem; }
-  #hud .favorites {
-    position: absolute;
-    left: 120rem;
-    top: 36.5rem; }
-  #hud .section.health {
-    position: absolute;
-    left: 42rem;
-    top: 32rem; }
-  #hud .section.controls {
-    position: absolute;
-    left: 80rem;
-    top: 32rem; }
-  #hud .tips {
-    position: absolute;
-    left: 140rem;
-    top: 72rem; }
-  #hud .section.credits {
-    position: absolute;
-    left: 300rem;
-    top: 32rem; }
-  #hud #favorites-left-template, #hud #favorites-right-template {
-    display: none; }
+    left: 84rem;
+    top: 40rem;
+    width: 50rem; }
 
-.current {
+#current {
   width: 70rem;
-  height: 50rem;
+  height: 55rem;
   border: 1.5rem solid white;
   text-transform: uppercase;
   padding: 1.5rem;
   position: relative; }
-  .current .title {
+  #current .title {
     width: 62%;
     padding: 1rem 1.2rem;
     color: #4d4d4d;
@@ -113,14 +88,14 @@ body {
     font-size: 2rem;
     letter-spacing: 0.05rem;
     font-weight: 700; }
-  .current .url {
+  #current .url {
     width: 62%;
     padding: 0.8rem 1.2rem;
     color: white;
     background-color: rgba(255, 255, 255, 0.25);
     font-size: 1.5rem;
     letter-spacing: 0.15rem; }
-  .current .credits {
+  #current .credits {
     width: 100%;
     list-style: none;
     margin: 0;
@@ -129,7 +104,7 @@ body {
     letter-spacing: 0.05rem;
     position: absolute;
     bottom: 1.5rem; }
-    .current .credits .tools {
+    #current .credits .tools {
       font-size: 1.5rem;
       letter-spacing: 0.15rem; }
 
@@ -147,6 +122,9 @@ body {
     width: 100%;
     height: 20rem;
     vertical-align: bottom; }
+
+.fav:last-child {
+  margin-right: 0; }
 
 .fav-inner {
   width: 100%;
@@ -166,9 +144,6 @@ body {
     font-size: 1.5rem;
     font-weight: 400;
     color: #858585; }
-
-.fav:hover {
-  background: rgba(23, 150, 218, 0.3); }
 
 .fav:active {
   color: white;
@@ -213,18 +188,18 @@ body {
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
   display: inline-block;
-  margin: 0 5rem 0 0; }
+  margin: 0; }
   .section .title {
     padding: 0.4rem 0 2rem;
     color: rgba(255, 255, 255, 0.5);
     font-weight: 700; }
 
-.section.favorites {
-  width: 20rem; }
+#favorites {
+  width: 156.5rem; }
 
-.section.health {
+#health {
   width: 30rem; }
-  .section.health p {
+  #health p {
     margin: 0;
     padding: 0;
     color: rgba(255, 255, 255, 0.75);
@@ -232,22 +207,22 @@ body {
     -moz-hyphens: auto;
     hyphens: auto; }
 
-.section.controls {
+#controls {
   width: 24rem; }
-  .section.controls ul {
+  #controls ul {
     margin: 0;
     padding: 0;
     font-size: 2rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     font-size: 1.5rem; }
-  .section.controls li {
+  #controls li {
     list-style: none;
     padding: 0rem;
     margin: 0 0 0.2rem 0;
     word-wrap: nowrap;
     width: 100%; }
-  .section.controls .key {
+  #controls .key {
     width: 30%;
     font-weight: 700;
     margin: 0 0.2rem 0 0;
@@ -256,26 +231,26 @@ body {
     text-align: center;
     font-weight: 700;
     display: inline-block; }
-  .section.controls .text {
+  #controls .text {
     width: 69%;
     padding: 1.25rem 1.25rem;
     font-weight: 400;
     display: inline-block;
     background: rgba(255, 255, 255, 0.2); }
 
-.section.credits {
+#credits {
   width: 30rem; }
-  .section.credits .logo {
+  #credits .logo {
     padding: 2.4rem 0 0.6rem;
     width: 20rem; }
-  .section.credits ul {
+  #credits ul {
     margin: 0;
     padding: 0;
     font-size: 2rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     font-size: 1.5rem; }
-  .section.credits li {
+  #credits li {
     list-style: none;
     padding: 0rem;
     margin: 0 0 0.2rem 0;
@@ -287,7 +262,7 @@ body {
 //---------- Site Frame ----------//
 
 .frame {
-	
+
 	border: 0.3rem solid white;
 	width: 36rem;
 	height: 18rem;

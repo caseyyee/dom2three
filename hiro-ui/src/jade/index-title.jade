@@ -1,15 +1,12 @@
 extends layouts/master
 
-mixin fav(title)
-	.fav
-		.fav-inner #{title}
-
 block scripts
-	script(type="text/javascript", src="js/lib/three.min.js")
-	script(type="text/javascript", src="js/dom2three.js")
-	script(type="text/javascript", src="js/title.js")
+	script(type="text/javascript", src="../../dom2three.js")
+	script.
+		DOM2three.save()
 
 block content
-	#title.cf
-		#site-title
-			include ./modules/currentsite.jade
+
+	#currentsite.cf
+
+		include ./modules/currentsite.jade
