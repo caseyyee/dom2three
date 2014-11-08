@@ -109,6 +109,9 @@ var DOM2three = (function() {
 		// if set to true, create meshes for all nodes.
 		self.makeMeshes = self.opts.makeMeshes || false;
 
+		// sets pixel to three.js scene scale
+		self.pixelScale = self.opts.pixelScale || 1;
+
 		if (!path) {
 			console.error('must specify path to dom2three data');
 			return false;
@@ -180,8 +183,7 @@ var DOM2three = (function() {
 
 				var material = new THREE.MeshBasicMaterial({
 					map: texture,
-					transparent: true,
-					alphaTest: 0.1
+					transparent: true
 				});
 
 				textNode.texture = texture;
@@ -209,8 +211,8 @@ var DOM2three = (function() {
 			texture.offset.y = 1 - ((rectangle.y + rectangle.height) / texture.image.height);
 			texture.needsUpdate = true;
 
-			// adjusts the pixel to three.js units ratio.
-			var scale = 0.0035;
+			// pixel to three.js units scale.
+			var scale = self.pixelScale;
 
 			var centerOffsetX = texture.image.width / 2;
 			var centerOffsetY = texture.image.height / 2;
@@ -225,11 +227,6 @@ var DOM2three = (function() {
 				map : texture,
 				transparent: true,
 				alphaTest: 0.1
-				// wireframe: true,
-				// color: Math.random()*0xffffff,
-				// depthTest: false,
-				// depthWrite: true
-
 			});
 
 			materials.push(material);
@@ -273,7 +270,7 @@ var DOM2three = (function() {
 				})
 			.then( function(parsed) {
 					return parsed;
-				})
+				});
 
 		var textureLoaded = loadTexture(path + '/index.png')
 			.then( function(texture) {
@@ -281,7 +278,21 @@ var DOM2three = (function() {
 				})
 			.catch( function(err) {
 					console.error(err);
-				})
+				});
+
+		this.getNodesByClass = function(className) {
+			var nodes = this.nodes;
+			var collection = [];
+			for (var i = 0; i < nodes.length; i++) {
+				var node = nodes[i];
+
+				if (node.classList && node.classList[0] == className) {
+					collection.push(node);
+				}
+			}
+
+			return collection;
+		};
 
 		this.getNodeById = function(id, createMesh) {
 			var nodes = this.nodes;
@@ -297,7 +308,22 @@ var DOM2three = (function() {
 			return false;
 		};
 
-		this.setText = function(id, text) {
+		this.setText = function(id, text, opts) {
+			var opts = opts || {};
+
+			// offset placement of text
+			var offsetX = opts.offsetX || 0;
+			var offsetY = opts.offsetY || 0;
+
+			// split new lines using
+			var newLine = opts.newLine || '\n';
+
+			// line height for multi-line
+			var lineHeight = opts.lineHeight || 0;
+
+			// vertical alignment
+			var verticalAlign = opts.verticalAlign || 'top';
+
 			var node = self.getNodeById(id);
 
 			if (!node) {
@@ -310,7 +336,24 @@ var DOM2three = (function() {
 
 			context.clearRect(0, 0, canvas.width, canvas.height);
 
-			context.fillText(text, node.fontPosition.x, node.fontPosition.y);
+			// handle multiline
+			var textLines = text.split(newLine);
+
+			for (var i = 0; i < textLines.length; i++) {
+				var line = textLines[i];
+
+				var x = node.fontPosition.x + offsetX;
+				var y = 0;
+
+				if (verticalAlign == 'top') {
+					y = node.fontPosition.y + offsetY + (i * lineHeight);
+				}  else if (verticalAlign == 'bottom') {
+					var bottomOffset = - ((textLines.length * lineHeight) - (i * lineHeight) - lineHeight);
+					y = node.fontPosition.y + offsetY + bottomOffset;
+				}
+
+				context.fillText(line, x, y);
+			}
 
 			node.texture.needsUpdate = true;
 		};
