@@ -141,21 +141,21 @@ body {
 	position: relative;
 
 	.title {
-		width: 62%;
+		width: 70%;
 		padding: 1rem 1.2rem;
 		color: rgba( 77, 77, 77, 1 );
 		background: rgba( 255, 255, 255, 1 );
-		font-size: $font-med;
+		font-size: 2.2rem;
 		letter-spacing: 0.05rem;
 		font-weight: 700;
 	}
 
 	.url {
-		width: 62%;
+		width: 70%;
 		padding: 0.8rem 1.2rem;
 		color: white;
 		background-color: rgba( 255, 255, 255, 0.25 );
-		font-size: $font-small;
+		font-size: 1.75rem;
 		letter-spacing: 0.15rem;
 	}
 
@@ -165,7 +165,7 @@ body {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		font-size: $font-med;
+		font-size: 1.75rem;
 		letter-spacing: 0.05rem;
 		position: absolute;
 		bottom: 1.5rem;
@@ -265,7 +265,7 @@ body {
 
 	.key {
 		width: 7rem;
-		border: 0.25rem solid white;
+		border: 0.50rem solid white;
 		text-align: center;
 		font-weight: 700;
 
@@ -293,7 +293,9 @@ body {
 //---------- Section ----------//
 
 .section {
-	border-top: 0.8rem solid rgba( 255, 255, 255, 0.2 );
+	//border-top: 0.8rem solid rgba( 255, 255, 255, 0.2 );
+	box-shadow: inset 0 0.8rem 0 0 rgba( 255, 255, 255, 0.2 );
+	padding-top: 0.8rem;
 	text-transform: uppercase;
 	font-size: $font-small;
 	letter-spacing: 0.1rem;
