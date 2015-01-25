@@ -1,0 +1,62 @@
+extends layouts/master
+
+block content
+
+block scripts
+	script(type="text/javascript", src="../../dom2three.js")
+	script(type="text/javascript", src="js/lib/three.min.js")
+
+	script.
+
+		var renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		document.body.appendChild(renderer.domElement);
+		
+		var scene = new THREE.Scene();
+		
+		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+
+		var d23 = DOM2three.load('../dom2three/hud',{
+			/*
+			makeMeshes option generates three.js compatible meshes.
+			*/
+			makeMeshes: true,
+			/* 
+			pixelScale sets the pixel to three.js units ratio.   1px = 1 three.js unit.
+			*/
+			pixelScale: 1
+		});
+
+		d23.loaded.then(function() {
+			
+			// get individual nodes by element ID
+			var homeMesh = d23.getNodeById('home').mesh;
+			homeMesh.position.set(0, 300, -1000);
+			scene.add(homeMesh);
+
+			// get collection of nodes by ClassName and to scene using DOM positioning.
+			var favMeshes = d23.getNodesByClass('fav'),
+				fav, mesh;
+
+			for (var i = 0; i < favMeshes.length; i++) {
+				fav = favMeshes[i];
+				mesh = fav.mesh.clone();
+
+				mesh.position.set(
+					mesh.userData.position.x, 
+					mesh.userData.position.y,
+					-1000
+				);
+				scene.add(mesh);
+			};
+
+
+		});
+		
+		function animate() {
+			renderer.render(scene, camera);
+			requestAnimationFrame( animate );
+		};
+
+		animate();
+
