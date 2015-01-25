@@ -28,11 +28,10 @@ block scripts
 		});
 
 		d23.loaded.then(function() {
-			
 			// get individual nodes by element ID
-			var homeMesh = d23.getNodeById('home').mesh;
-			homeMesh.position.set(0, 300, -1000);
-			scene.add(homeMesh);
+			var frogMesh = d23.getNodeById('frog').mesh;
+			frogMesh.position.set(0, 200, -1500);
+			scene.add(frogMesh);
 
 			// get collection of nodes by ClassName and to scene using DOM positioning.
 			var favMeshes = d23.getNodesByClass('fav'),
@@ -40,7 +39,7 @@ block scripts
 
 			for (var i = 0; i < favMeshes.length; i++) {
 				fav = favMeshes[i];
-				mesh = fav.mesh.clone();
+				mesh = fav.mesh;
 
 				mesh.position.set(
 					mesh.userData.position.x, 
@@ -50,7 +49,7 @@ block scripts
 				scene.add(mesh);
 			};
 
-
+			animate();
 		});
 		
 		function animate() {
@@ -58,5 +57,5 @@ block scripts
 			requestAnimationFrame( animate );
 		};
 
-		animate();
+		
 
