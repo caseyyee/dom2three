@@ -5,7 +5,7 @@ $font-mega: 2.5rem;
 
 html, body {
   /* we want to set a absolute width here since slimer.js will trim layout otherwise. */
-  width: 170rem;
+  width: 100%;
   height: 100%;
   font-family: 'Montserrat';
   font-size: 10px;
@@ -19,7 +19,7 @@ html, body {
 }
 
 body {
-  background: #6674a7;
+  background: #333333;
   color: #fff;
 }
 
@@ -27,12 +27,24 @@ body {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
+#canvas {
+  width: 360rem;
+  height: 90rem;
+  background: url('../images/background.png') no-repeat;
+  background-size: 100%;
+  text-align: center;
+}
+
 //---------- Favorites ----------//
 
+#favorites {
+  display: inline-block;
+}
+
 .fav {
-  width: 20rem;
+  width: 22rem;
   height: 30rem;
-  margin: 0 2.75rem 2.75rem 0;
+  margin: 0 3rem 3rem 0;
   background: #fff;
   float: left;
   position: relative;
@@ -48,6 +60,14 @@ body {
 }
 .fav:last-child {
   margin-right: 0;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 
 .fav-inner {
@@ -71,7 +91,6 @@ body {
     font-weight: 400;
     color: rgba( 133, 133, 133, 1 )
   }
-
 }
 
 
