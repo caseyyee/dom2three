@@ -11,15 +11,16 @@ mixin fav(id, title, type, image)
 			.type #{type}
 		img( src='images/thumbs/'+image )
 
-block content	
-	#favorites
-		+fav('home', 'MozVR.com', 'Home', 'home-1.jpg')
-		+fav('Sechelt', 'Sechelt', 'Demo', 'sechelt-1.jpg')
-		+fav('polar', 'Polar Sea', 'Video', 'polarsea-1.jpg')
-		+fav('diving', 'Information Diving', 'Demo', 'infodive-1.jpg')
-		+fav('pano', 'Panorama', 'Demo', 'panoramas-1.jpg')
-		+fav('leap', 'Leap Motion', 'Demo', 'leap-1.jpg')
-		+fav('elevr4', 'elevr: Talk Chat Show ep.4', 'Interview', 'elevr-1.jpg')
+block content
+	#canvas
+		#favorites
+			+fav('home', 'MozVR.com', 'Home', 'home-1.jpg')
+			+fav('Sechelt', 'Sechelt', 'Demo', 'sechelt-1.jpg')
+			+fav('polar', 'Polar Sea', 'Video', 'polarsea-1.jpg')
+			+fav('diving', 'Information Diving', 'Demo', 'infodive-1.jpg')
+			+fav('pano', 'Panorama', 'Demo', 'panoramas-1.jpg')
+			+fav('leap', 'Leap Motion', 'Demo', 'leap-1.jpg')
+			+fav('elevr4', 'elevr: Talk Chat Show ep.4', 'Interview', 'elevr-1.jpg')
 
 	img(data-mesh, src='images/frog.jpg')#frog
 
