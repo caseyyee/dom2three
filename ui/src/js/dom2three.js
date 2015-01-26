@@ -31,13 +31,17 @@ var DOM2three = (function() {
 
 				nodeData.classList = node.classList;
 
-				var dataPosition = node.getAttribute('data-position');
-				var re = /\s*,\s*/;
-				if (dataPosition) {
-					nodeData.threePosition = node.getAttribute('data-position').split(re).map(function(value) {
-						return parseInt(value);
-					})
-				}
+				var attributes = ['data-position', 'data-rotation'];
+				var regex = /\s*,\s*/;
+
+				attributes.forEach(function(attr) {
+					var attribute = node.getAttribute(attr);
+					if (attribute) {
+						nodeData[attr] = attribute.split(regex).map(function(value) {
+							return parseInt(value);
+						})	
+					}
+				});
 				
 				nodeData.id = node.id;
 

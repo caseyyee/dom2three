@@ -91,9 +91,18 @@ block scripts
 
 			scene.add(obj)
 
-			// get individual nodes by element ID, set position using position attributes.
+			// get individual nodes by element ID, set attributes.
 			var bird = d23.getNodeById('bird');
-			bird.mesh.position.fromArray(bird.threePosition)
+			
+			var attributes = ['data-position', 'data-rotation'];
+			var prefix = 'data-';
+
+			attributes.forEach(function(attr){
+				if (bird[attr]) {
+					bird.mesh[attr.substring(prefix.length)].fromArray(bird[attr]);
+				}
+			});
+			
 			scene.add(bird.mesh);
 
 			// get collection of nodes by ClassName and to scene using DOM positioning.
