@@ -7,13 +7,12 @@ var shell = require('gulp-shell')
 var runSequence = require('run-sequence');
 
 var path = {
-  base: './hiro-ui/'
+  base: './ui/'
 }
 
 var filesToMove = [
   path.base + 'src/images/**/*.*',
   path.base + 'src/js/**/*.js',
-  path.base + 'src/data/**/*.*',
   path.base + 'src/fonts/**/*.*'
 ];
 
@@ -26,14 +25,12 @@ the saved image is the texture file which dom2three will load into three.js as a
 [path to slimer] render/script.js [page url] [save location]
 */
 var slimer = './renderer/slimerjs-0.9.3/slimerjs renderer/script.js ';
+var pageUrl = 'http://localhost:8000 ';
+var saveTo = path.base + 'build/dom2three';
 
 var scrapes = [
-  slimer + 'http://localhost:8000/hiro-ui/build/index-hud.html ' +
-    path.base + 'dom2three/hud',
-  slimer + 'http://localhost:8000/hiro-ui/build/index-title.html ' +
-    path.base + 'dom2three/title'
+  slimer + pageUrl + saveTo
 ];
-
 
 /*
 slimer does not export the rasterized pages with alpha channels, so we will need to generate the
@@ -49,13 +46,10 @@ slimer github issue: https://github.com/laurentj/slimerjs/issues/154
 
 var imagemagick = './renderer/makealpha.sh ';
 var alpha = [
-  imagemagick + path.base + 'dom2three/hud/index-ffff00.png ' +
-    path.base + 'dom2three/hud/index-0000ff.png ' +
-    path.base + 'dom2three/hud/index.png',
-
-  imagemagick + path.base + 'dom2three/title/index-ffff00.png ' +
-    path.base + 'dom2three/title/index-0000ff.png ' +
-    path.base + 'dom2three/title/index.png'];
+  imagemagick + path.base + 'build/dom2three/index-ffff00.png ' +
+    path.base + 'build/dom2three/index-0000ff.png ' +
+    path.base + 'build/dom2three/index.png'
+  ];
 
 
 gulp.task('slimer', shell.task(scrapes));
@@ -90,6 +84,7 @@ gulp.task('copy', function() {
 
 gulp.task('connect', function() {
   connect.server({
+    root: 'ui/build',
     port: 8000
   });
 });
@@ -100,6 +95,12 @@ gulp.task('render', function() {
   });
 });
 
+gulp.task('save', function() {
+  runSequence('connect', 'slimer', function() {
+    process.exit(0)
+  });
+})
+
 gulp.task('default', function() {
   gulp.run('connect','copy', 'styles', 'content');
 
@@ -107,7 +108,7 @@ gulp.task('default', function() {
     gulp.run('styles');
   });
   gulp.watch(path.base+'src/jade/**/*.*', function(event) {
-    gulp.run('content');
+    gulp.run('content', 'slimer');
   });
   gulp.watch(path.base+'src/js/**/*.*', function(event) {
     gulp.run('copy');

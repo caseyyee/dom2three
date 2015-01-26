@@ -18,7 +18,9 @@ page.open(url, function(status) {
 
     // pickup the script tag with dom2three element data and persist it into a json file.
     var uidata = page.evaluate(function() {
-    	return document.querySelector('#dom2three').innerHTML;
+      var data = document.querySelector('#dom2three').innerHTML;
+      console.log(data);
+    	return data
     });
 
     fs.write(writePath+'/index.json', uidata);
@@ -39,5 +41,5 @@ page.open(url, function(status) {
     console.log('saved '+writePath+'/index-ffff00.png');
 
    	phantom.exit();
-  }, 200);
+  }, 1000);
 });

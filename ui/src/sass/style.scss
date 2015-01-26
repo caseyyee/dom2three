@@ -1,0 +1,78 @@
+$font-small: 1.5rem;
+$font-med: 2rem;
+$font-large: 1.75rem;
+$font-mega: 2.5rem;
+
+html, body {
+  /* we want to set a absolute width here since slimer.js will trim layout otherwise. */
+  width: 170rem;
+  height: 100%;
+  font-family: 'Montserrat';
+  font-size: 10px;
+  font-weight: 400;
+  margin: 0;
+
+  /* pixel 0,0 is reserved for creating the alpha channel, must be kept clear.  We'll do this by using padding. */
+  padding: 1px; 
+  
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: #6674a7;
+  color: #fff;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+//---------- Favorites ----------//
+
+.fav {
+  width: 20rem;
+  height: 30rem;
+  margin: 0 2.75rem 2.75rem 0;
+  background: #fff;
+  float: left;
+  position: relative;
+  cursor: pointer;
+  color: #000;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 20rem;
+    vertical-align: bottom;
+  }
+}
+.fav:last-child {
+  margin-right: 0;
+}
+
+.fav-inner {
+  width: 100%;
+  height: 10rem;
+  padding: 1.5rem;
+  font-size: $font-med;
+  font-weight: 700;
+  line-height: $font-small + 0.25rem;
+  letter-spacing: 0.0175rem;
+  text-transform: uppercase;
+  color: rgba( 77, 77, 77, 1 );
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  display: table-cell;
+  //vertical-align: middle;
+
+  .type {
+    font-size: $font-small;
+    font-weight: 400;
+    color: rgba( 133, 133, 133, 1 )
+  }
+
+}
+
+
+
