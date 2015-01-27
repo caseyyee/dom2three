@@ -5,6 +5,7 @@ block content
 block scripts
 	script(type="text/javascript", src="js/dom2three.js")
 	script(type="text/javascript", src="js/lib/three.min.js")
+	script(type="text/javascript", src="js/lib/OrbitControls.js")
 
 	script.
 		// bend function
@@ -65,6 +66,9 @@ block scripts
 		var scene = new THREE.Scene();
 		
 		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera.position.z = 0.0001;
+
+		var controls = new THREE.OrbitControls(camera);
 
 		var d23 = DOM2three.load('dom2three',{
 			/*
@@ -78,50 +82,74 @@ block scripts
 		});
 
 		d23.loaded.then(function() {
-			
-			// create object 3d and nest objects we want bent inside.
-			var obj = new THREE.Object3D();
-			obj.position.set(0, 500, -1050);
-			
-			var frog = d23.getNodeById('frog').mesh;
-			frog.position.set(0, 0, 0);	// let's not use dom positioning.  resetting to 0,0,0
-			obj.add(frog);
+			var group = new THREE.Object3D();
+			var rad = 1500;
+			var mesh;
+			var mesh_rad_ar = [];
+			var mesh_ar = [];
 
-			bend(obj, 1000);	// bend object's children
+			group.position.set(0,0,-rad);
 
-			scene.add(obj)
+			d23.nodes.forEach(function(node) {
+				mesh = node.mesh;
 
-			// get individual nodes by element ID, set attributes.
-			var bird = d23.getNodeById('bird');
-			
-			var attributes = ['data-position', 'data-rotation'];
-			var prefix = 'data-';
+				var attributes = ['position', 'rotation'];
+				var prefix = 'data-';
+				var cords = ['x','y','z'];
+				var mesh_property;
+				var mesh_rad;
 
-			attributes.forEach(function(attr){
-				if (bird[attr]) {
-					bird.mesh[attr.substring(prefix.length)].fromArray(bird[attr]);
+				attributes.forEach(function(attr) {
+					if (node[prefix + attr]) {
+						
+						cords.forEach(function(cord,i) {
+							// apply relative posiitoning from node properties
+
+							
+							mesh[attr][cord] += node[prefix + attr][i];
+							
+
+							// check z depth of each mesh and store into array.
+							if (cord == 'z' && attr == 'position') { // only z position cords
+								mesh_rad = mesh[attr][cord];
+								
+								if (mesh_rad_ar.indexOf(mesh_rad) == -1) {
+									mesh_rad_ar.push(mesh_rad);
+									mesh_ar.push(mesh);
+								}
+							}
+							
+							
+						});
+					}
+				});
+
+				if (mesh_ar.indexOf(mesh) == -1) {
+					group.add(mesh);
 				}
 			});
-			
-			scene.add(bird.mesh);
 
-			// get collection of nodes by ClassName and to scene using DOM positioning.
-			var favMeshes = d23.getNodesByClass('fav'),
-				fav, mesh;
+			// 0 depth
+			bend(group, rad);
+			scene.add(group);
 
-			for (var i = 0; i < favMeshes.length; i++) {
-				fav = favMeshes[i];
-				mesh = fav.mesh;
-				mesh.position.z = -1000;
-				scene.add(mesh);
-			};
+			// all other depths
+			mesh_rad_ar.forEach(function(radius,i) {
+				var rad_group = new THREE.Object3D();
+
+				rad_group.position.set(0,0,-(rad+radius));
+				rad_group.add(mesh_ar[i]);
+				scene.add(rad_group);
+				bend(rad_group, rad+radius);
+			});
 
 			animate();
 		});
 		
 		function animate() {
+			controls.update();
 			renderer.render(scene, camera);
-			requestAnimationFrame( animate );
+			requestAnimationFrame(animate);
 		};
 
 		

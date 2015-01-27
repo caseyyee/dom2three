@@ -5,37 +5,63 @@ $font-mega: 2.5rem;
 
 html, body {
   /* we want to set a absolute width here since slimer.js will trim layout otherwise. */
-  width: 100%;
-  height: 100%;
+  width: 360rem;
+  height: 90rem;
+}
+
+body {
+  background: url('../images/background.png') no-repeat;
+  background-size: 100%;
   font-family: 'Montserrat';
   font-size: 10px;
   font-weight: 400;
   margin: 0;
-
-  /* pixel 0,0 is reserved for creating the alpha channel, must be kept clear.  We'll do this by using padding. */
-  padding: 1px; 
-  
   text-rendering: optimizeLegibility;
 }
 
-body {
-  background: #333333;
-  color: #fff;
-}
 
 *, *:before, *:after {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
-#canvas {
-  width: 360rem;
-  height: 90rem;
-  background: url('../images/background.png') no-repeat;
-  background-size: 100%;
+/*
+container for layout
+*/
+#layout {
+  width: 100%;
+  height: 100%;
+  position: relative;
   text-align: center;
 }
+/*
+guidelines
+*/
+#layout:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  background: red;
+  left: 50%;
+  top: 0px;
+  width: 2px;
+  height: 100%;
+}
+#layout:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  background: blue;
+  left: 0px;
+  top: 50%;
+  height: 2px;
+  width: 100%;
+}
 
-//---------- Favorites ----------//
+
+
+
+
+
 
 #favorites {
   display: inline-block;
@@ -44,7 +70,7 @@ body {
 .fav {
   width: 22rem;
   height: 30rem;
-  margin: 0 3rem 3rem 0;
+  margin: 0 3rem 0rem 0;
   background: #fff;
   float: left;
   position: relative;

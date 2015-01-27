@@ -96,8 +96,18 @@ gulp.task('render', function() {
 });
 
 gulp.task('save', function() {
-  runSequence('connect', 'slimer', function() {
-    process.exit(0)
+  gulp.run('connect','copy', 'styles', 'content');
+  
+  gulp.watch(path.base+'src/sass/**/*.*', function(event) {
+    gulp.run('styles');
+  });
+
+  gulp.watch(path.base+'src/jade/**/*.*', function(event) {
+    gulp.run('content', 'slimer');
+  });
+  
+  gulp.watch(path.base+'src/js/**/*.*', function(event) {
+    gulp.run('copy');
   });
 })
 
@@ -107,9 +117,12 @@ gulp.task('default', function() {
   gulp.watch(path.base+'src/sass/**/*.*', function(event) {
     gulp.run('styles');
   });
+
   gulp.watch(path.base+'src/jade/**/*.*', function(event) {
-    gulp.run('content', 'slimer');
+    //gulp.run('content', 'slimer');
+    gulp.run('content');
   });
+
   gulp.watch(path.base+'src/js/**/*.*', function(event) {
     gulp.run('copy');
   });
