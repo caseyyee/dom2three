@@ -38,7 +38,7 @@ var DOM2three = (function() {
 					var attribute = node.getAttribute(attr);
 					if (attribute) {
 						nodeData[attr] = attribute.split(regex).map(function(value) {
-							return parseInt(value);
+							return parseFloat(value);
 						})	
 					}
 				});

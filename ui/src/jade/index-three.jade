@@ -6,6 +6,8 @@ block scripts
 	script(type="text/javascript", src="js/dom2three.js")
 	script(type="text/javascript", src="js/lib/three.min.js")
 	script(type="text/javascript", src="js/lib/OrbitControls.js")
+	script(type="text/javascript", src="js/lib/VRControls.js")
+	script(type="text/javascript", src="js/lib/VREffect.js")
 
 	script.
 		// bend function
@@ -60,33 +62,36 @@ block scripts
 
 
 		var renderer = new THREE.WebGLRenderer( { antialias: true } );
-		renderer.setSize(window.innerWidth, window.innerHeight);
+		
+		var effect = new THREE.VREffect(renderer);
+		effect.setSize(window.innerWidth, window.innerHeight);
+
 		document.body.appendChild(renderer.domElement);
 		
 		var scene = new THREE.Scene();
 		
-		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.0001, 10000 );
 		camera.position.z = 0.0001;
 
-		var controls = new THREE.OrbitControls(camera);
+		//var controls = new THREE.OrbitControls(camera);
+		var controls = new THREE.VRControls(camera);
 
 		var d23 = DOM2three.load('dom2three',{
 			/*
-			makeMeshes option generates three.js compatible meshes.
+			makeMeshes option generates three.js compatible layers.
 			*/
 			makeMeshes: true,
 			/* 
 			pixelScale sets the pixel to three.js units ratio.   1px = 1 three.js unit.
 			*/
-			pixelScale: 1
+			pixelScale: 0.001
 		});
 
 		d23.loaded.then(function() {
 			var group = new THREE.Object3D();
-			var rad = 1500;
+			var rad = 1;
 			var mesh;
-			var mesh_rad_ar = [];
-			var mesh_ar = [];
+			var layers = {};
 
 			group.position.set(0,0,-rad);
 
@@ -97,26 +102,26 @@ block scripts
 				var prefix = 'data-';
 				var cords = ['x','y','z'];
 				var mesh_property;
-				var mesh_rad;
+				var mesh_radius; 
 
 				attributes.forEach(function(attr) {
 					if (node[prefix + attr]) {
 						
-						cords.forEach(function(cord,i) {
+						cords.forEach(function(cord, i) {
 							// apply relative posiitoning from node properties
-
-							
 							mesh[attr][cord] += node[prefix + attr][i];
 							
-
-							// check z depth of each mesh and store into array.
+							// check z depth of each mesh and store into layers
 							if (cord == 'z' && attr == 'position') { // only z position cords
-								mesh_rad = mesh[attr][cord];
+								mesh_radius = mesh[attr][cord];
 								
-								if (mesh_rad_ar.indexOf(mesh_rad) == -1) {
-									mesh_rad_ar.push(mesh_rad);
-									mesh_ar.push(mesh);
-								}
+								if (!layers.hasOwnProperty(mesh_radius)) {
+									layers[mesh_radius.toString()] = {
+										meshes: []
+									};
+								} 
+								layers[mesh_radius.toString()].meshes.push(mesh);
+								
 							}
 							
 							
@@ -124,9 +129,9 @@ block scripts
 					}
 				});
 
-				if (mesh_ar.indexOf(mesh) == -1) {
-					group.add(mesh);
-				}
+				
+				group.add(mesh);
+				
 			});
 
 			// 0 depth
@@ -134,21 +139,49 @@ block scripts
 			scene.add(group);
 
 			// all other depths
-			mesh_rad_ar.forEach(function(radius,i) {
+			for(var radius in layers) {
 				var rad_group = new THREE.Object3D();
 
-				rad_group.position.set(0,0,-(rad+radius));
-				rad_group.add(mesh_ar[i]);
-				scene.add(rad_group);
-				bend(rad_group, rad+radius);
-			});
+				rad_group.position.set(0,0,-(rad + parseFloat(radius)));
 
+				layers[radius].meshes.forEach(function(mesh, i) {
+					rad_group.add(mesh);
+				})
+
+				bend(rad_group, rad + parseFloat(radius));
+
+				scene.add(rad_group);
+				
+			}
+			
 			animate();
+
+			function fullscreen() {
+				effect.setFullScreen(true);
+			}
+
+			document.addEventListener( 'dblclick', fullscreen);
+
+
+			window.addEventListener("keydown", function(e) {
+				//console.log(e.keyCode);
+				if (e.keyCode == 90) { //z
+					controls.zeroSensor();
+				} else if (e.keyCode == 70) { //f
+					fullscreen();
+				}
+			}, true);
+
+			window.addEventListener('resize', function() {
+				effect.setSize( window.innerWidth, window.innerHeight );
+			}, false );
+
+
 		});
 		
 		function animate() {
 			controls.update();
-			renderer.render(scene, camera);
+			effect.render(scene, camera);
 			requestAnimationFrame(animate);
 		};
 
