@@ -1,7 +1,12 @@
 extends layouts/master
 
+block stylesheets
+	link(rel='stylesheet', href='css/style.css')
+	link(rel='stylesheet', href='fonts/montserrat/montserrat.css', type='text/css')
+
 block scripts
 	script(type="text/javascript", src="js/dom2three.js")
+	script#uidata(type='text/json')
 	script.
 		DOM2three.save()
 
@@ -28,4 +33,4 @@ block content
 
 		br
 
-		img(data-mesh, data-position='0,0.1,-0.4', src='images/bird.jpg')#bird
+		img(data-mesh, data-position='0,0.2,-0.4', src='images/bird.jpg')#bird
