@@ -88,21 +88,22 @@ block scripts
 		});
 
 		d23.loaded.then(function() {
-			var group = new THREE.Object3D();
-			var rad = 1;
-			var mesh;
-			var layers = {};
+			
+			var rad = 1; // default radius.
+			
+			var group = new THREE.Object3D(),
+				mesh,
+				layers = {},
+				attributes = ['position', 'rotation'],
+				prefix = 'data-',
+				cords = ['x','y','z'],
+				mesh_property,
+				mesh_radius; 
 
 			group.position.set(0,0,-rad);
 
 			d23.nodes.forEach(function(node) {
 				mesh = node.mesh;
-
-				var attributes = ['position', 'rotation'];
-				var prefix = 'data-';
-				var cords = ['x','y','z'];
-				var mesh_property;
-				var mesh_radius; 
 
 				attributes.forEach(function(attr) {
 					if (node[prefix + attr]) {
@@ -120,6 +121,12 @@ block scripts
 										meshes: []
 									};
 								} 
+
+								// scale mesh so in remains proportional to DOM layout.
+								var scale = rad+mesh_radius;
+								mesh.scale.x *= scale;
+								mesh.scale.y *= scale;
+
 								layers[mesh_radius.toString()].meshes.push(mesh);
 								
 							}
@@ -151,9 +158,16 @@ block scripts
 				bend(rad_group, rad + parseFloat(radius));
 
 				scene.add(rad_group);
-				
 			}
 			
+			// -------------------
+
+			function animate() {
+				controls.update();
+				effect.render(scene, camera);
+				requestAnimationFrame(animate);
+			};
+
 			animate();
 
 			function fullscreen() {
@@ -161,7 +175,6 @@ block scripts
 			}
 
 			document.addEventListener( 'dblclick', fullscreen);
-
 
 			window.addEventListener("keydown", function(e) {
 				//console.log(e.keyCode);
@@ -176,14 +189,8 @@ block scripts
 				effect.setSize( window.innerWidth, window.innerHeight );
 			}, false );
 
-
 		});
 		
-		function animate() {
-			controls.update();
-			effect.render(scene, camera);
-			requestAnimationFrame(animate);
-		};
-
+		
 		
 
